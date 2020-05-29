@@ -1,9 +1,13 @@
 # 🦕 deno
 
 [Deno(바로가기)](https://deno.land/)
+
 [Deno/std(라이브러리)](https://deno.land/std)
+
 [Deno/x(프레임워크)](https://deno.land/x)
+
 **타입스크립트, 자바스크립트 런타임**
+
 **V8, Rust, Tokio, Typescript**
 
 ## 특징
