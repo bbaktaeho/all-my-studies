@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: white;
+    border-bottom: 1px solid lightgray;
+}
+
+.container {
+    width: 980px;
+    margin: auto;
+}
+.container-left {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.logo {
+    float: left;
+    margin-right: 5px;
+}
+.logo img {
+    display: block;
+}
+.menu {
+    float: left;
+}
+.menu-item {
+    float: left;
+    padding: 8px 10px;
+    /* 단축 속성 ([top,bottom], [left,right]) */
+}
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}

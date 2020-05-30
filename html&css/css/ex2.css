@@ -1,0 +1,13 @@
+div {
+    color: yellowgreen;
+}
+.box {
+    background-color: brown;
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+    margin: 50px;
+}
+.box2 {
+    padding: 50px;
+}
