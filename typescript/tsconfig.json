@@ -1,0 +1,12 @@
+{
+    "include": ["src/**/*.ts"], // 타입스크립트 컴파일러에 포함될 파일들
+    "exclude": ["node_modules"], // 타입스크립트 컴파일러에 제외
+    "compilerOptions": {
+        "module": "CommonJS", // node.js 에서 실행하기 위해 commonjs로 모듈 설정
+        "rootDir": "src", // 컴파일할 타입스크립트의 루트 디렉터리
+        "outDir": "dist", // 컴파일 후 js 파일이 오는 곳
+        "target": "ES5",
+        "sourceMap": true, // 컴파일 전 원본 코드를 보고싶을 때
+        "removeComments": true // 주석 제거
+    }
+}
