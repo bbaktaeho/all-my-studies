@@ -97,3 +97,5 @@ function getGrade(g: Grade): string {
     }
 }
 ```
+
+-   합쳐진 타입(interaction type, union type)
