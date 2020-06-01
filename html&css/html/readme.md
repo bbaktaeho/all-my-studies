@@ -21,7 +21,7 @@
 0. **TAG**
     - TAG.html
 1. 블록 요소
-    - `div`, `h1`, `p`, `header`, `footer`
+    - `div`, `h1`, `p`, `header`, `footer`, `main`, `article`, `section`
     - 사용가능한 최대 가로범위를 사용함
     - 크기를 지정할 수 있음
     - 수직으로 생성
