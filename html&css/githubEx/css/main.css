@@ -28,7 +28,34 @@ a {
 .float--right {
     float: right;
 }
+/* summary */
+.summary {
+}
+.summary__title {
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 18px;
+}
+.summary__description {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
 
+/* section & inner */
+.section {
+    position: relative;
+}
+.section .inner {
+    max-width: 980px;
+    /* width 가 정의되어있어야만 margin으로 가운데 정렬할 수 있음 */
+    margin: 0 auto;
+    /* 패딩이 들어가거나 보더가 들어가면 요소가 커지는데 그걸 방지함 */
+    box-sizing: border-box;
+    position: relative;
+}
 /* button */
 .btn {
     height: 34px;
@@ -95,10 +122,7 @@ header {
 }
 
 header .inner {
-    max-width: 980px;
     height: 78px;
-    /* width 가 정의되어있어야만 margin으로 가운데 정렬할 수 있음 */
-    margin: 0 auto;
 }
 header .menu-group {
     display: flex;
@@ -138,4 +162,181 @@ header .main-menu li a:hover {
 header .sign-group {
     /* 수평 */
     display: flex;
+    height: 100%;
+    align-items: center;
+}
+header .btn-group {
+    order: 2;
+    display: flex;
+}
+
+header .btn-group .sign-in {
+    margin-right: 4px;
+}
+
+header #search-form {
+    order: 1;
+    margin-right: 12px;
+}
+
+#search {
+    width: 160px;
+    font-size: 14px;
+}
+
+/* + 는 형제 선택자 */
+#search + [type='submit'] {
+    display: none;
+}
+
+header .sub-menu {
+    display: flex;
+    margin-right: 10px;
+}
+header .sub-menu li a {
+    padding: 8px;
+    /* inline 요소는 패딩값을 가질 수 없으므로 블록으로 변경 */
+    display: block;
+    font-size: 13px;
+    color: #3c4146;
+}
+
+header .sub-menu li a:hover {
+    color: #4078c0;
+}
+
+/* visual */
+.section--visual {
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: cover;
+}
+
+/* :: 가상요소 */
+.section--visual::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.section--visual .inner {
+    padding: 160px 0;
+    display: flex;
+}
+
+.section--visual .summary {
+    flex: 1;
+    margin-right: 90px;
+}
+
+.section--visual .summary__title {
+    color: #fff;
+    font-size: 54px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 1px 25px rgba(0, 0, 0, 0.75);
+}
+
+.section--visual .summary__description {
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 1px 25px rgba(0, 0, 0, 0.75);
+}
+/* 아이디 선택자는 조상 요소가 필요없다! */
+#sign-form {
+    width: 340px;
+    margin-top: 16px;
+}
+
+#sign-form .input--text {
+    width: 100%;
+    height: 40px;
+}
+#sign-form li {
+    margin-bottom: 17px;
+}
+#sign-form li:last-child {
+    margin-bottom: 0;
+}
+
+#sign-form .caption {
+    font-size: 12px;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    text-align: center;
+}
+#sign-form [type='submit'] {
+    width: 100%;
+    height: 62px;
+    padding: 0 25px;
+    font-size: 20px;
+    justify-content: center;
+}
+
+/* feature */
+.section--feature {
+    background: #f5f5f5;
+    padding-top: 66px;
+}
+.section--feature .summary {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+}
+.section--feature .video {
+    max-width: 650px;
+    margin: 50px auto;
+}
+.section--feature .video .video-ratio {
+    height: 0;
+    padding-top: 56.25%;
+    position: relative;
+}
+.section--feature .video .video-ratio iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.section--feature .tiles {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.section--feature .tiles .inner {
+    max-width: 1200px;
+}
+
+.section--feature .tiles ul {
+}
+.section--feature .tiles li {
+    padding: 34px 24px;
+    text-align: center;
+    line-height: 1.5;
+    border-right: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    float: left;
+    width: 25%;
+}
+.section--feature .tiles li:last-child {
+    border-right: none;
+}
+.section--feature .tiles li img {
+    max-width: 100%;
+    padding: 14px 10% 24px;
+    /* 패딩때문에 커지는 것을 방지 */
+    box-sizing: border-box;
+}
+.section--feature .tiles li h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.section--feature .tiles li p {
+    font-size: 14px;
+    color: #767676;
 }
