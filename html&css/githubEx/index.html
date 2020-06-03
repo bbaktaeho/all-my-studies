@@ -29,9 +29,47 @@
         <meta property="twitter:image" content="img/logo__github.png" />
         <meta property="twitter:url" content="https://github.com" />
 
-        <link rel="shortcut icon" type="image/x-icon" icon href="favicon.ico" />
         <link rel="icon" href="favicon.png" />
         <link rel="apple-touch-icon" href="favicon.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+        <!-- reset.css cdn -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
-    <body></body>
+    <body>
+        <div class="body__conatainer">
+            <!-- ! HEADER -->
+            <header class="section">
+                <div class="inner clearfix">
+                    <div class="menu-group float--left">
+                        <div class="logo">
+                            <a href="#">GitHub</a>
+                        </div>
+                        <ul class="main-menu">
+                            <li><a href="#">Personal</a></li>
+                            <li><a href="#">Open source</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Explore</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sign-group float--right">
+                        <div class="btn-group">
+                            <a href="#" class="btn sign-in">Sign in</a>
+                            <a href="#" class="btn btn--primary sign-up">Sign up</a>
+                        </div>
+                        <form id="search-form" method="POST" action="">
+                            <input type="text" id="search" class="input--text" placeholder="Search GitHub" />
+                            <input type="submit" value="submit" />
+                        </form>
+                        <ul class="sub-menu">
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </body>
 </html>

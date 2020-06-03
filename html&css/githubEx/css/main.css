@@ -1,0 +1,141 @@
+/* 전체 영역 */
+/* 
+    * css 작명 규칙
+    * BEM
+    todo: - 일반적인 작명 (toggle-btn)
+    todo: -- ~의 상태 (btn--success)
+    todo: __ ~의 일부분 (body__conatainer)
+ */
+/* common */
+.body__conatainer {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+a {
+    text-decoration: none;
+}
+/* float clearfix */
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.float--left {
+    float: left;
+}
+.float--right {
+    float: right;
+}
+
+/* button */
+.btn {
+    height: 34px;
+    background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #333;
+}
+.btn:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.07);
+}
+.btn.btn--primary {
+    border: 1px solid #656565;
+    color: #fff;
+    background: #55a532 linear-gradient(#91dd70, #55ae2e);
+}
+
+/* input */
+.input--text {
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    font-size: 16px;
+}
+.input--text:focus {
+    border-color: #51a7e8;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(81, 167, 232, 0.5);
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacacaca;
+}
+input--text::-ms-input-placeholder {
+    color: #cacacaca;
+}
+input--text::-moz-input-placeholder {
+    color: #cacacaca;
+}
+
+/* header */
+header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+    background: #fff;
+}
+
+header .inner {
+    max-width: 980px;
+    height: 78px;
+    /* width 가 정의되어있어야만 margin으로 가운데 정렬할 수 있음 */
+    margin: 0 auto;
+}
+header .menu-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    background-image: url('../img/logo.svg');
+    width: 32px;
+    height: 32px;
+    display: block;
+    text-indent: -9999px;
+}
+
+header .logo a:hover {
+    background-image: url('../img/logo_on.svg');
+}
+
+header .main-menu {
+    display: flex;
+}
+
+header .main-menu li a {
+    display: block;
+    padding: 10px;
+    color: #4c4146;
+}
+
+header .main-menu li a:hover {
+    color: #4078c0;
+}
+
+header .sign-group {
+    /* 수평 */
+    display: flex;
+}
