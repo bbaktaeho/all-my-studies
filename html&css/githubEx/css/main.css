@@ -62,7 +62,7 @@ a {
     background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
     border: 1px solid #d5d5d5;
     border-radius: 4px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     padding: 0 12px;
     font-size: 14px;
@@ -204,6 +204,18 @@ header .sub-menu li a {
 header .sub-menu li a:hover {
     color: #4078c0;
 }
+#toggle-btn {
+    display: none;
+    background: url('../img/toggle-btn.svg');
+    width: 18px;
+    height: 24px;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    /* 손가락 모양으로 변경 */
+    cursor: pointer;
+    text-indent: -9999px;
+}
 
 /* visual */
 .section--visual {
@@ -339,4 +351,89 @@ header .sub-menu li a:hover {
 .section--feature .tiles li p {
     font-size: 14px;
     color: #767676;
+}
+
+/* where is */
+.section--where-is .inner {
+    padding-top: 80px;
+}
+#map {
+    width: 100%;
+    height: 400px;
+    margin-top: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+/* pricing card */
+.section--pricing {
+    background: linear-gradient(#f5f5f5, #fff);
+}
+.section--pricing .inner {
+    padding: 80px 0;
+}
+
+.section--pricing .inner .card {
+    display: flex;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.section--pricing .inner .card .cell {
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section--pricing .inner .card .cell1 .btn {
+    height: 50px;
+    font-size: 16px;
+}
+.section--pricing .inner .card .cell2 {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    flex: 1;
+    border-left: 1px solid #e5e5e5;
+}
+
+footer {
+}
+footer .inner {
+    padding: 50px 0;
+    border-top: 1px solid #eee;
+}
+
+footer .site-links {
+    display: flex;
+}
+footer .site-links li {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+
+footer .site-links li a {
+    color: #4078c0;
+}
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
+footer .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+}
+
+footer .logo:hover svg {
+    fill: #4078c0;
 }

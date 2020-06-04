@@ -31,3 +31,23 @@
     -   비손실 압축
     -   투명도 지원
     -   W3C 권장 이미지 포멧
+
+---
+
+### 반응형
+
+-   @media : 다양한 미디어 유형이나 장치에 따라, 서로 다른 스타일 규칙을 적용
+
+    ```css
+    @media 미디어타입<all, screen, print> and (미디어특성<width, max-width, min-width, height, ..., orientation>) {
+        CSS
+    }
+    ```
+
+    ```css
+    <!-- 예시 -- > @media screen and (max-width: 1200px) {
+        body {
+            color: red;
+        }
+    }
+    ```

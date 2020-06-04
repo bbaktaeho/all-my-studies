@@ -1,0 +1,43 @@
+/* common */
+.summary__title {
+    font-size: 34px !important;
+}
+.summary__description {
+    font-size: 22px;
+}
+
+/* feature */
+.section--feature .tiles li {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* where is */
+#map {
+    width: auto;
+    margin: 40px -20px 0 -20px;
+    border-left: none;
+    border-right: none;
+}
+
+/* pricing card */
+.section--pricing .card {
+    display: block !important;
+}
+.section--pricing .card .cell1 {
+}
+.section--pricing .card .cell2 {
+    border-left: none;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* footer */
+footer .site-links {
+    float: none;
+    display: block;
+    text-align: center;
+}
+footer .site-links li {
+    display: inline;
+}
