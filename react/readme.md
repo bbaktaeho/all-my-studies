@@ -1,45 +1,106 @@
 # react
 
--   모든 걸 날리고 새로 생성
--   virtual dom : 가상 돔
-    -   메모리에 있는 돔을 통해 업데이트를 느리지 않게 함
+- 모든 걸 날리고 새로 생성
+- virtual dom : 가상 돔
+  - 메모리에 있는 돔을 통해 업데이트를 느리지 않게 함
 
 ## JSX
 
--   자바스크립트 문법
--   xml 형태로 선언하면 babel 컴파일러가 자바스크립트 형태로 변환
+- 자바스크립트 문법
+- xml 형태로 선언하면 babel 컴파일러가 자바스크립트 형태로 변환
 
 ## Hook
 
--   useRef
-    -   특정 DOM 선택(ref), DOM 포커스 변경
-    -   어떠한 값을 바꿨을 때 재랜더링 할 필요가 없을 때
-    -   컴포넌트가 재랜더링될 때마다 계속 기억할 수 있는 값을 관리할 때도 사용
-    -   setTimeput, setInterval을 사용할 때 주어지는 id 값을 기억할 때, 스크롤 위치를 알고있을 때
--   useEffect
-    -   파라미터에 함수와 배열을 받음
-    -   등록한 함수에서 리턴을 하게되면 업데이트 되기 직전에 호출된다
-    -   조회하고있는 상태나 프롭스가 있다면 배열에 넣어줘야하는 것이 규칙
-    -   생명주기
-    -   컴포넌트가 업데이트 될 때, 되기 전에도 작업할 수 있음
-    -   인자로 함수를 받으면 컴포넌트가 마운트 될 때 함수가 실행되고 컴포넌트가 삭제될 때는 함수의 리턴이 실행됨
--   useMemo
-    -   성능 최적화할 때 사용
-    -   특정 값이 바꼈을 때만 특정 함수를 실행, 만약 원하는 값이 바뀌지 않았다면 리랜더링할 때 이전에 만들었던 값을 재사용할 수 있게 함
--   useCallback
-    -   함수를 재사용할 때 사용
--   useReducer
-    -   useState의 set 함수를 한 함수에서 여러 번 사용할 때 변경하면 좋을 듯
+- useRef
+  - 특정 DOM 선택(ref), DOM 포커스 변경
+  - 어떠한 값을 바꿨을 때 재랜더링 할 필요가 없을 때
+  - 컴포넌트가 재랜더링될 때마다 계속 기억할 수 있는 값을 관리할 때도 사용
+  - setTimeput, setInterval을 사용할 때 주어지는 id 값을 기억할 때, 스크롤 위치를 알고있을 때
+- useEffect
+  - 파라미터에 함수와 배열을 받음
+  - 등록한 함수에서 리턴을 하게되면 업데이트 되기 직전에 호출된다
+  - 조회하고있는 상태나 프롭스가 있다면 배열에 넣어줘야하는 것이 규칙
+  - 생명주기
+  - 컴포넌트가 업데이트 될 때, 되기 전에도 작업할 수 있음
+  - 인자로 함수를 받으면 컴포넌트가 마운트 될 때 함수가 실행되고 컴포넌트가 삭제될 때는 함수의 리턴이 실행됨
+- useMemo
+  - 성능 최적화할 때 사용
+  - 특정 값이 바꼈을 때만 특정 함수를 실행, 만약 원하는 값이 바뀌지 않았다면 리랜더링할 때 이전에 만들었던 값을 재사용할 수 있게 함
+- useCallback
+  - 함수를 재사용할 때 사용
+- useReducer
+  - useState의 set 함수를 한 함수에서 여러 번 사용할 때 변경하면 좋을 듯
 
 ## 전역 관리
 
--   Context API
+- Context API
+  - hook
+    - createContext, useContext
 
 ## Tools
 
--   react devtools
+- react devtools
+
+## immer
+
+- 불변성 관리 라이브러리
+- 불변성을 해치는 코드를 작성해도 대신 불변성을 유지해줌
+- 기본 사용법1
+
+  ```javascript
+  import produce from 'immer';
+
+  const state = { number: 1, dontChangeMe: 2 };
+  // 어떻게 바꿔줄 지?
+  const nextState = produce(state, (draft) => {
+    draft.number += 1;
+  });
+  console.log(nextState);
+  ```
+
+- 기본 사용법2
+
+  ```javascript
+  import produce from 'immer';
+
+  const todo = {
+    text: 'text',
+    boole: false,
+  };
+  const updater = produce((draft) => {
+    draft.boole = !draft.boole;
+  });
+  const nextTodo = updater(todo);
+
+  console.log(nextTodo);
+  ```
+
+- 다소 느린 성능이지만 코드 가독성이 좋음
+
+## class 컴포넌트
+
+- 이전(?) 방법
+- 생명주기 메서드
+  [여기보기](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+  1. 컴포넌트가 마운트될 때
+     1. constructor
+     2. render
+     3. componentDidMount
+  2. 업데이트될 때
+     1. getDeriverdStateFromProps
+     2. shouldComponentUpdate
+     3. render
+     4. getSnapshotBeforUpdate
+     5. componentDidUpdate
+  3. 제거할 때
+     1. componentWillUnmount
+  - componentDidCatch : 에러발생 시 잡아줌
+    - sentry 라이브러리 사용해보기
 
 ## etc
 
--   React.memo
-    -   프롭스가 변경되었을 때만 재랜더링
+- React.memo
+
+  - 프롭스가 변경되었을 때만 재랜더링
+
+- Snippet
