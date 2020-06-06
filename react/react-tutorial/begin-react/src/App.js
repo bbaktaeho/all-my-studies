@@ -1,59 +1,99 @@
-import React, { useRef, useState } from 'react';
-// import InputSample from './InputSample';
+import React, { useReducer, useCallback, useRef, useMemo } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
-// import Hello from './Hello';
-// import Wrapper from './Wrapper';
-// import Counter from './Counter';
+import useInputs from './useInputs';
+
+function countActiveUsers(users) {
+    console.log('활성 사용자 수를 세는중...');
+    return users.filter((user) => user.active).length;
+}
+
+const initialState = {
+    users: [
+        {
+            id: 1,
+            username: 'velopert',
+            email: 'public.velopert@gmail.com',
+            active: true,
+        },
+        {
+            id: 2,
+            username: 'tester',
+            email: 'tester@example.com',
+            active: false,
+        },
+        {
+            id: 3,
+            username: 'liz',
+            email: 'liz@example.com',
+            active: false,
+        },
+    ],
+};
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'CREATE_USER':
+            return {
+                inputs: initialState.inputs,
+                users: state.users.concat(action.user),
+            };
+        case 'TOGGLE_USER':
+            return {
+                ...state,
+                users: state.users.map((user) => (user.id === action.id ? { ...user, active: !user.active } : user)),
+            };
+        case 'REMOVE_USER':
+            return {
+                ...state,
+                users: state.users.filter((user) => user.id !== action.id),
+            };
+        default:
+            return state;
+    }
+}
 
 function App() {
-    const [inputs, setInputs] = useState({ username: '', email: '' });
-    const { username, email } = inputs;
-    const [users, setUsers] = useState([
-        { id: 1, username: 'bbak', email: 'test@test', active: true },
-        { id: 2, username: 'qwe', email: 'test2@test2', active: false },
-        { id: 3, username: 'asdf', email: 'test3@test3', active: false },
-        { id: 4, username: 'vczvzcv', email: 'test4@test4', active: false },
-    ]);
-
-    const onChange = (e) => {
-        const { name, value } = e.target;
-        setInputs({ ...inputs, [name]: value });
-    };
-
-    // 다음 아이디 값을 기억하고 있음
-    // 특정 돔에다가 선택할 때 쓸 수도 있지만, 어떠한 변수를 기억하고 싶을 때, 리랜더링해도 기억하고 싶을 때 사용
     const nextId = useRef(5);
-    const onCreate = () => {
-        const NewUser = {
-            id: nextId.current,
-            username,
-            email,
-        };
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const { users } = state;
+    const [form, onChange, reset] = useInputs({ username: '', email: '' });
+    const { username, email } = form;
 
-        // ! 배열에 항목을 추가하는 법
-        // setUsers([...users, NewUser]);
-        setUsers(users.concat(NewUser));
-
-        setInputs({ username: '', email: '' });
-        console.log(nextId.current);
+    const onCreate = useCallback(() => {
+        dispatch({
+            type: 'CREATE_USER',
+            user: {
+                id: nextId.current,
+                username,
+                email,
+            },
+        });
         nextId.current += 1;
-    };
+        reset();
+    }, [username, email, reset]);
 
-    const onRemove = (id) => {
-        // ! immutable!!!!
-        // ? 제거할 때 필터를 사용하는 이유
-        // todo: 선택된 컴포넌트를 제외하고 나머지 컴포넌트들을 재랜더링 해야 하므로 특정 테스트를 통과한 컴포넌트만 추출해야하기 때문!
-        setUsers(users.filter((user) => user.id !== id));
-    };
+    const onToggle = useCallback((id) => {
+        dispatch({
+            type: 'TOGGLE_USER',
+            id,
+        });
+    }, []);
 
-    const onToggle = (id) => {
-        setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
-    };
+    const onRemove = useCallback((id) => {
+        dispatch({
+            type: 'REMOVE_USER',
+            id,
+        });
+    }, []);
+
+    const count = useMemo(() => countActiveUsers(users), [users]);
+
     return (
         <>
-            <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate}></CreateUser>
-            <UserList users={users} onRemove={onRemove} onToggle={onToggle}></UserList>
+            <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
+            <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
+            <div>{count}</div>
         </>
     );
 }
