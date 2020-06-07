@@ -108,8 +108,20 @@
   1. <이름>.module.css
   2. import 로 불러오면 객체로 바뀜
 - css in js
+
   - emotion
-  - styled-components
+  - styled-components : tagged template literals
+
+    ```javascript
+    const testValue = 'TEST';
+    function tester(param1, ...param2) {
+      cnosole.log(param1);
+      cnosole.log(param2);
+    }
+    tester`123123 ${testValue}123123 123 ${testValue} 123123123`;
+    ```
+
+- polished
 
 ## etc
 
