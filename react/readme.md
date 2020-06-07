@@ -97,6 +97,20 @@
   - componentDidCatch : 에러발생 시 잡아줌
     - sentry 라이브러리 사용해보기
 
+## react style
+
+- `npm install classnames`
+- `npm install node-sass`
+- sass
+  1. .sass
+  2. .scss
+- cssModules : create-react-app 은 이미 적용되어 있음
+  1. <이름>.module.css
+  2. import 로 불러오면 객체로 바뀜
+- css in js
+  - emotion
+  - styled-components
+
 ## etc
 
 - React.memo
