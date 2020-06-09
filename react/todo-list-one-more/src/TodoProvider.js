@@ -5,12 +5,12 @@ const initialState = [
   {
     id: 1,
     text: 'test1',
-    done: false,
+    done: true,
   },
   {
     id: 2,
     text: 'test2',
-    done: false,
+    done: true,
   },
   {
     id: 3,

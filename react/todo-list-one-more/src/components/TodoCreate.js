@@ -1,6 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import { useTodoDispatch, useTodoNextId } from '../TodoProvider';
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -31,6 +32,18 @@ const CircleButton = styled.button`
 
   /* css 속성을 변경할 때 애니메이션 속도를 조절하는 방법 */
   transition: 0.125s all ease-in;
+  ${(props) =>
+    props.open &&
+    css`
+      background: #ff6b6b;
+      &:hover {
+        background: #ff8787;
+      }
+      &:active {
+        background: #fa5252;
+      }
+      transform: translate(-50%, 50%) rotate(45deg);
+    `}
 `;
 
 const InsertFormContainer = styled.div`
@@ -60,14 +73,44 @@ const Input = styled.input`
 `;
 
 function TodoCreate() {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const dispatch = useTodoDispatch();
+  const nextId = useTodoNextId();
+
+  const onOpen = () => {
+    setOpen((prev) => !prev);
+  };
+
+  const onChangeInputValue = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'CREATE',
+      todo: { id: nextId.current, text: value, done: false },
+    });
+    setValue('');
+    setOpen(false);
+    nextId.current += 1;
+  };
+
   return (
     <>
-      <InsertFormContainer>
-        <InsertForm>
-          <Input></Input>
-        </InsertForm>
-      </InsertFormContainer>
-      <CircleButton>
+      {open && (
+        <InsertFormContainer>
+          <InsertForm onSubmit={onSubmit}>
+            <Input
+              placeholder="입력 후 엔터"
+              value={value}
+              onChange={onChangeInputValue}
+            ></Input>
+          </InsertForm>
+        </InsertFormContainer>
+      )}
+      <CircleButton onClick={onOpen} open={open}>
         <MdAdd></MdAdd>
       </CircleButton>
     </>
