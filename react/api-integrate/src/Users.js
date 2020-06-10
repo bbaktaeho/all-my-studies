@@ -18,6 +18,8 @@ function Users() {
   const state = useUsersState();
   const dispatch = useUsersDispatch();
   const { loading, data: users, error } = state.users;
+  console.log(state);
+
   // 처음 불러올 때는 호출하지 않겠다하면 deferFn 속성에 함수를 주고 리턴값으로 run을 받는다
   // const { data: users, error, isLoading, reload, run } = useAsync({
   //   deferFn: getUsers,
