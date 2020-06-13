@@ -127,6 +127,26 @@
 
 - react-async
 
+## 라우팅
+
+- SPA
+  - 클라이언트에서 라우팅을 관리
+  - 인터렉션이 많을 수록 SPA 가 강점이 돋보임
+  - 서버쪽 자원을 아낄 수 있고 클라이언트에서는 더 나은 사용자 경험을 누릴 수 있음
+  - 앱의 규모가 커지면 자바스크립트 파일이 커질 수 있음 -> CODE SPLITTING 으로 해결
+  - 브라우저가 js 구동이 끝날 때 까지 웹을 볼 수 없음 -> SERVER SIDE RENDERING 으로 해결
+  - react-router, next 라이브러리로 spa 구현
+- react-router-dom
+
+  - Router, WithRouter, MemoryRouter, HashRouter, Link, Switch, NavLink
+  - Router 컴포넌트로 라우팅
+    - exact 속성으로 경로가 완전 일치할 때 사용
+  - Link 컴포넌트로 a 태그를 대체
+    - a 태그는 페이지가 새로 로딩됨
+  - url parameter 는 match 속성에서 사용 가능
+  - 쿼리스트링은 location 속성에서 사용 가능 -> qs 모듈을 사용해서 파싱해줘야함
+  - history 객체
+
 ## etc
 
 - React.memo
