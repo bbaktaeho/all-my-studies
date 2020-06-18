@@ -30,13 +30,14 @@ _이 글은 2020 FIDO Hackathon에 참여 후 세션을 정리한 글입니다._
 
 -   Sigle Gesture : POLICY 설정을 통해 두 개 이상의 FACTOR를 조합하여 확인하지만 사용자 입장에서는 편의성 향상
 -   Power of Passwordless : 패스워드를 사용하지 않는 다중요소인증은 편리성과 보안성이라든 두 마리 토끼를 잡을 수 있음
--   사례와 이익
+-   **사례와 이익**
     -   구글 직원은 패스워드 없이 로그인 -> 패스워드와 아이디를 리셋해야하는 리소스 비용을 줄임
     -   sk텔레콤 t아이디, 비밀번호 없는 인증 지원 -> 크레덴셜 스터핑(일반적으로 사람들이 많이 쓰는 비밀번호라든지, 살 수 있는 비밀번호 디비를 사서 공격하는 것) 원천 차단
+    -   Secure QR Code -> UAF 적용, 택배 또는 문서에서 개인정보가 노출되는데 이를 QR코드로 만들어 주고 받는 사람들끼리만 보게된다면 안전
 
 ## Spec
 
--   **FIDO1**
+-   **FIDO1.0**
     -   **FIDO UAF**
         -   단말에 탑재된 생체인식 기능을 이용한 온라인 인증 방식
     -   **FIDO U2F**
@@ -69,3 +70,14 @@ _이 글은 2020 FIDO Hackathon에 참여 후 세션을 정리한 글입니다._
 ## Why FIDO
 
 > 사용성과 보안성을 잡기 위해서 사용
+
+## FIDO Protocol
+
+#### [UAF](https://fidoalliance.org/specs/fido-uaf-v1.1-ps-20170202/fido-uaf-overview-v1.1-ps-20170202.pdf)
+
+![UAF](./images/UAF.PNG)
+
+-   FIDO server
+-   FIDO client
+-   ASM
+-   FIDO authenticator
