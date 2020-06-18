@@ -62,7 +62,7 @@ FIDO의 목표는 **`Simple`** 하고 **`Strong`** 한 인증체계를 갖는 �
 **`Multi-Factor`** 는 여러가지 요소로 나를 인증하는 것입니다.
 <br>나 자신(WHAT I AM), 내가 가진 것(WHAT I HAVE), 내가 아는 것(WHAT I KNOW) 으로 편의성과 보안성을 높이는 인증을 조합할 수 있습니다. 여기서 WHAT I AM 은 나의 생체 정보가 될 수 있고, WHAT I HAVE 는 내가 가진 디바이스 등이 될 수 있고, WHAT I KNOW 는 내가 알고 있는 1회용 비밀번호, PIN NUMBER가 될 수 있습니다.
 
-<center><img src="https://fidoalliance.org/wp-content/uploads/2014/12/graphic_StandardizationAll.png" width="350" ><br>FIDO 표준화</center>
+<center><img src="https://fidoalliance.org/wp-content/uploads/2014/12/graphic_StandardizationAll.png" width="400" height="550" ></center>
 
 ### 적용 사례와 이익
 
