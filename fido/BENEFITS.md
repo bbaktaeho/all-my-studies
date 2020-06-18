@@ -49,13 +49,20 @@ _파이도는 이러한 철학을 바탕으로 합니다_
 
 ### FIDO 이점
 
-FIDO의 목표는 `Simple`하고 `Strong`한 인증체계를 갖는 것인데요.
-<br>기존 비밀번호를 버리고 고유한 생체 정보를 이용해서 간편하고 안전하게 온라인 인증을 하는 것입니다.
-즉, 내 자신이 곧 비밀번호가 되고, 나만의 특징으로 소중한 나의 정보들을 지킬 수 있다는 것입니다.
+FIDO의 목표는 **`Simple`** 하고 **`Strong`** 한 인증체계를 갖는 것인데요.
+<br>기존 아이디, 비밀번호 방식을 버리고 고유한 생체 정보를 이용해서 간편하고 안전하게 온라인 인증을 하는 것입니다.
+즉, 내 자신이 곧 비밀번호가 되고, 나만의 특징의 조합으로 소중한 나의 정보들을 지킬 수 있다는 것입니다.
 
-기존 아이디, 비밀번호 방식에서 온라인 로그인은 서버로 아이디와 비밀번호가 공유되지만 FIDO 방식은 내 인증장치(Authenticator) 안에서만 안전하게 보관합니다. 서버로는 암호화된 공개 키만 보내서 인증하게 됩니다.
+다시 말해 **FIDO는 우리의 비밀이 외부로 공유되지 않아야하고(`Not Shared`)
+<br>다양한 인증요소(`Multi-Factor`)로 확인해야 합니다.**
 
-<center><img src="https://fidoalliance.org/wp-content/uploads/2014/12/graphic_StandardizationAll.png" width="350" ></center>
+**`Not Shared`** 는 기존 아이디, 비밀번호 방식에서 온라인 로그인은 서버로 아이디와 비밀번호가 공유되지만 FIDO 방식은 내 인증장치(Authenticator) 안에서만 안전하게 보관합니다. 서버로는 암호화된 공개 키만 보내서 인증하게 됩니다.
+<br>이러한 FIDO 방식은 생처정보 노출 위험을 원천 방지하고 서버의 변경 없이 다양한 인증수단을 추가 또는 교체가 가능합니다.
+
+**`Multi-Factor`** 는 여러가지 요소로 나를 인증하는 것입니다.
+<br>나 자신(WHAT I AM), 내가 가진 것(WHAT I HAVE), 내가 아는 것(WHAT I KNOW) 으로 편의성과 보안성을 높이는 인증을 조합할 수 있습니다. 여기서 WHAT I AM 은 나의 생체 정보가 될 수 있고, WHAT I HAVE 는 내가 가진 디바이스 등이 될 수 있고, WHAT I KNOW 는 내가 알고 있는 1회용 비밀번호, PIN NUMBER가 될 수 있습니다.
+
+<center><img src="https://fidoalliance.org/wp-content/uploads/2014/12/graphic_StandardizationAll.png" width="350" ><br>FIDO 표준화</center>
 
 ### 적용 사례와 이익
 
