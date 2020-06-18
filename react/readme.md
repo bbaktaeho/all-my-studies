@@ -147,7 +147,7 @@
   - 쿼리스트링은 location 속성에서 사용 가능 -> qs 모듈을 사용해서 파싱해줘야함
   - history 객체
 
-## 리덕스
+## redux
 
 - Action 객체
 - Action 생성함수 : 액션 객체를 생성하는 함수
@@ -159,6 +159,19 @@
   1. 하나의 앱엔 하나의 스토어만
   2. state는 readonly -> 불변성 유지
   3. 변화를 일으키는 함수는 순수함수만
+
+### react-redux
+
+- Provider : redux에서 createStore를 사용하여 store를 만들면 이를 Provider 컴포넌트의 props로 받음
+- useSelector : Provider 안에 있는 컴포넌트에서 store에 state를 사용할 수 있게 하는 함수
+
+### redux middleware
+
+- 주로 비동기 처리할 때 사용
+- redux-thunk
+- redux-saga
+- redux-observable
+- redux-promise-mmiddleware
 
 ## etc
 
