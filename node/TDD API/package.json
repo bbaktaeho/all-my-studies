@@ -1,0 +1,20 @@
+{
+    "name": "tdd-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "mocha": "^8.0.1",
+        "should": "^13.2.3",
+        "supertest": "^4.0.2"
+    }
+}
