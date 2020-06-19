@@ -1,0 +1,8 @@
+{
+    "$schema": "https://deno.land/x/denon/schema.json",
+    "env": { "TOKEN": "test token" },
+    "allow": ["net", "env"],
+    "scripts": {
+        "start": "server.ts"
+    }
+}
