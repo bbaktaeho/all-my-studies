@@ -58,4 +58,5 @@ URL import한 모듈은 내 컴퓨터에 캐시로 저장됨
 -   **express**
     -   내가 알던 express가 deno에서??
 -   **Denon**
--   node.js 의 nodemon!
+    -   node.js 의 nodemon!
+    -   컴퓨터에 설치 후 `denon --init`
