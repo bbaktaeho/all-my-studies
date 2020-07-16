@@ -13,28 +13,28 @@
 
 1. **평균 60% 온라인 사용자가 공통된 비밀번호를 다양한 계정에서 사용**
 
-    저도 약 2개의 비밀번호로 모든 온라인 계정을 관리하고 있습니다. 단 하나의 계정에서 비밀번호를 탈취당하면 많은 계정에 영향을 미칠 것입니다.
+   저도 약 2개의 비밀번호로 모든 온라인 계정을 관리하고 있습니다. 단 하나의 계정에서 비밀번호를 탈취당하면 많은 계정에 영향을 미칠 것입니다.
 
 2. **온라인 이용자 45% 가 평균적으로 쉬운 비밀번호 사용**
 
-    <center><img src="https://images.kbench.com/kbench/article/2019_12/k206109p1n1.jpg" width="400"></img></center>
+   <center><img src="https://images.kbench.com/kbench/article/2019_12/k206109p1n1.jpg" width="400"></img></center>
 
-    쉬운 비밀번호를 사용한다는 건 그만큼 많은 온라인 이용자들이 같은 비밀번호를 사용하고 있다고도 할 수 있습니다. [2019년 최악의 비밀번호](http://www.itworld.co.kr/howto/144212)에서 내가 사용하는 비밀번호가 있는지 확인해보고 있다면 수정하는 것이 좋을 것 같습니다.
-    쉬운 비밀번호를 여러 사용자가 같이 사용하고 있다면 문제가 될 수밖에 없겠죠?
+   쉬운 비밀번호를 사용한다는 건 그만큼 많은 온라인 이용자들이 같은 비밀번호를 사용하고 있다고도 할 수 있습니다. [2019년 최악의 비밀번호](http://www.itworld.co.kr/howto/144212)에서 내가 사용하는 비밀번호가 있는지 확인해보고 있다면 수정하는 것이 좋을 것 같습니다.
+   쉬운 비밀번호를 여러 사용자가 같이 사용하고 있다면 문제가 될 수밖에 없겠죠?
 
 3. **온라인 이용자 56% 가 비밀번호를 종이나 파일에 기록 해놓고 사용**
 
-    <center><img src="https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F7121a034-8fa8-11e6-a72e-b428cb934b78?fit=scale-down&source=next&width=700" width="200"></img>  <img src="https://www.gdatasoftware.com/fileadmin/_processed_/9/0/PasswordPostIt_Sized_f831e692fd.jpg" width="200"></img> <img src="https://blog.malwarebytes.com/wp-content/uploads/2019/10/PostIt_Passwords-900x506.jpg" width="200"></img></center>
+   <center><img src="https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F7121a034-8fa8-11e6-a72e-b428cb934b78?fit=scale-down&source=next&width=700" width="200"></img>  <img src="https://www.gdatasoftware.com/fileadmin/_processed_/9/0/PasswordPostIt_Sized_f831e692fd.jpg" width="200"></img> <img src="https://blog.malwarebytes.com/wp-content/uploads/2019/10/PostIt_Passwords-900x506.jpg" width="200"></img></center>
 
-    계정마다 비밀번호를 다르게 하다 보면 기억하기 어렵습니다. 이 때문에 비밀번호를 기록해서 가지고 있는데요, 저는 군대 행정반에서 이와 같은 문제를 접했습니다. 보안 감사 전날에 모두 정리했던 기억이 납니다. 실제 인터뷰 사진으로 공개된 비밀번호로 해킹 사례까지 있다고 하니 각별히 주의해야 할 것 같습니다.
+   계정마다 비밀번호를 다르게 하다 보면 기억하기 어렵습니다. 이 때문에 비밀번호를 기록해서 가지고 있는데요, 저는 군대 행정반에서 이와 같은 문제를 접했습니다. 보안 감사 전날에 모두 정리했던 기억이 납니다. 실제 인터뷰 사진으로 공개된 비밀번호로 해킹 사례까지 있다고 하니 각별히 주의해야 할 것 같습니다.
 
 4. **온라인 해킹 81% 가 비밀번호 탈취, 유추를 통해서 발생**
 
-    여러 해킹 기법이 있지만 단순하게 비밀번호 탈취로 해킹이 일어나는 일이 더 빈번하다고 합니다.
+   여러 해킹 기법이 있지만 단순하게 비밀번호 탈취로 해킹이 일어나는 일이 더 빈번하다고 합니다.
 
 5. **기업 비밀번호의 문제점**
 
-    로그미인의 ID 및 액세스 관리 책임자 존 베넷은 “비밀번호는 전통적으로 기업의 최전방 방어선이었지만 지속적으로 불만족과 위험을 유발하고 있다. 게다가 대부분의 기업에서 비밀번호 공유 및 재사용이 보편적으로 발생하고 있으며 직원들은 하나의 비밀번호를 평균 13회 재사용하고 있다”라고 말했고, IT의 감독을 받지 않는 처음 보는 비밀번호가 등장하고 있다”라고 말했습니다. 자세한 내용은 [여기](http://www.itworld.co.kr/howto/144212)에서 확인하실 수 있습니다.
+   로그인의 ID 및 액세스 관리 책임자 존 베넷은 “비밀번호는 전통적으로 기업의 최전방 방어선이었지만 지속적으로 불만족과 위험을 유발하고 있다. 게다가 대부분의 기업에서 비밀번호 공유 및 재사용이 보편적으로 발생하고 있으며 직원들은 하나의 비밀번호를 평균 13회 재사용하고 있다”라고 말했고, IT의 감독을 받지 않는 처음 보는 비밀번호가 등장하고 있다”라고 말했습니다. 자세한 내용은 [여기](http://www.itworld.co.kr/howto/144212)에서 확인하실 수 있습니다.
 
 ## FIDO Protocol 적용
 
@@ -64,26 +64,32 @@ FIDO의 목표는 **`Simple`** 하고 **`Strong`** 한 인증체계를 갖는 �
 
 <center><img src="https://fidoalliance.org/wp-content/uploads/2014/12/graphic_StandardizationAll.png" width="400" height="550" ></center>
 
-### 적용 사례와 이익
+### 적용 사례와 이점
 
-요기만 손보면 될 것 같음
+그러면 이제 대표적인 기업을 통해서 실제로 FIDO Protocol 적용 사례를 알아보도록 하겠습니다.
 
-구글 직원은 패스워드 없이 로그인 -> 패스워드와 아이디를 리셋해야하는 리소스 비용을 줄임
+1. **GOOGLE**
 
-<https://www.zdnet.co.kr/view/?no=20180725093341&re=R_20181109220425>
+   구글은 2017년부터 직원 업무용 로그인에 비밀번호가 필요 없는 USB 기반 FIDO 표준 U2F 보안키를 채택해 피싱 피해를 효과적으로 막고 있다고 합니다.
+   구글이 도입한 USB 보안키는 직원이 업무 계정에 로그인할 때 이중요소인증 과정을 대체했다고 하는데요. 구글에서 FIDO를 도입한 이래로 계정이 탈취된 사례가 보고되거나 확인된 바가 없다고 합니다. 또한, 비밀번호와 아이디를 리셋해야하는 리소스 비용까지 줄일 수 있으니 보안성과 편의성, 그리고 비용 측면에서 많은 이점이 있다는 것을 알 수 있습니다.
 
-sk텔레콤 t아이디, 비밀번호 없는 인증 지원 -> 크레덴셜 스터핑(일반적으로 사람들이 많이 쓰는 비밀번호라든지, 살 수 있는 비밀번호 디비를 사서 공격하는 것) 원천 차단
+2. **SKT**
 
-<https://www.zdnet.co.kr/view/?no=20190923174711>
+   SK텔레콤이 제공하는 서비스를 이용하기 위한 계정인 T아이디에 FIDO를 2019년 9월 도입했습니다. 도입한 이유는 아이디와 비밀번호를 입력하는 기존 로그인 방식으로 인증을 처리 시 발생하는 보안상의 문제점을 해소할 수 있을 것이란 기대에서 도입했다고 합니다. 보안상 문제점은 이른바 `크레덴셜 스터핑` 이라는 공격 방법으로 정보를 탈취당할 수 있다는 것인데요. 크레덴셜 스터핑이란 일반적으로 사람들이 많이 쓰는 비밀번호라든지, 살 수 있는 비밀번호를 구매해서 공격하는 것, 또는 보안이 취약한 사이트와 같은 아이디와 비밀번호를 사용하게 될 때 유출된 정보 등으로 공격하는 것입니다. SK텔레콤은 FIDO를 도입해서 크레덴셜 스터핑을 원천 차단했다고 합니다. 또한, 기존 로그인 방식으로 평균 30초가 걸렸던 반면, FIDO 도입 이후 5초 이하로 평균 시간도 줄어들었다고 합니다. 역시 FIDO의 이점인 보안성과 편의성을 그대로 보여주는 사례입니다.
 
-구글 스마트락, fido2 적용 사례
+3. **SAMSUNG**
 
-[http://www.itworld.co.kr/news/141910](http://www.itworld.co.kr/news/141910)
+   삼성SDS는 2015년 8월 samsung pay를 선보였습니다. 삼성페이는 생체 인증을 바탕으로 결제를 가능하게 하는 기술입니다. 이전 결제 방식의 복잡한 인증과정은 사용자의 피로도를 증가시켰으며, 이로 인해 발생한 고객만족도 저하는 기업의 서비스 경쟁력을 악화시켰는데요.. 복잡한 결제 승인 방식을 나의 지문으로 빠르게 승인받을 수 있다는 것이 삼성페이의 큰 장점입니다. 그뿐만 아니라 삼성SDS FIDO는 온라인 쇼핑몰에 활용하면 기업 측면에서 구매 포기 감소로 인한 매출이 오르는 이익이 있다고 하며, 소비자 측면에선 간편 결제가 가능하여 편리하다는 이점이 있다고 합니다. 또한, 은행 서비스에 활용하면 기업 측면에서 금융 보안 사고를 예방할 수 있고, 소비자 측면에서 공인인증서 설치가 불필요한 이점이 있다고 하네요.
 
-라인 적용 사례
+4. 그 외
 
-[https://engineering.linecorp.com/ko/blog/fido-at-line/](https://engineering.linecorp.com/ko/blog/fido-at-line/)
+   참고 자료를 확인해주세요!
 
-작년 해커톤
+### 참고 자료
 
-[https://fidoalliance.org/fido-hackathon-in-korea-meet-the-finalists/?lang=ko](https://fidoalliance.org/fido-hackathon-in-korea-meet-the-finalists/?lang=ko)
+- [구글 직원은 패스워드 없이 로그인한다](https://www.zdnet.co.kr/view/?no=20180725093341&re=R_20181109220425)
+- [SK텔레콤 T아이디, 비밀번호 없는 인증](https://www.zdnet.co.kr/view/?no=20190923174711)
+- [구글 스마트락, fido2 적용](http://www.itworld.co.kr/news/141910)
+- [삼성SDS FIDO.pdf](https://www.fsec.or.kr/common/extra/fsec/download/jsp/Page.do?dataIdx=78&funcType=fintech/companyFile&pathKey1=fsec)
+- [FIDO at LINE: 패스워드 없는 세상으로의 첫 발걸음](https://engineering.linecorp.com/ko/blog/fido-at-line/)
+- [FIDO Alliance 2019 Hackathon](https://fidoalliance.org/fido-hackathon-in-korea-meet-the-finalists/?lang=ko)
