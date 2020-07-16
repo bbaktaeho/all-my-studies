@@ -1,7 +1,9 @@
 import React from 'react';
 // import Greetings from './Greetings';
 // import Counter from './Counter';
-import MyForm from './MyForm';
+// import MyForm from './MyForm';
+// import Counter2 from './Counter2';
+import ReducerSample from './ReducerSample';
 
 // function App() {
 //   // const onClick = (name: string) => {
@@ -13,10 +15,12 @@ import MyForm from './MyForm';
 // }
 
 const App: React.FC = () => {
-  const onSubmit = (form: { name: string; description: string }) => {
-    console.log(form);
-  };
-  return <MyForm onSubmit={onSubmit}></MyForm>;
+  //   const onSubmit = (form: { name: string; description: string }) => {
+  //     console.log(form);
+  //   };
+  //   return <MyForm onSubmit={onSubmit}></MyForm>;
+  // return <Counter2></Counter2>;
+  return <ReducerSample></ReducerSample>;
 };
 
 export default App;
