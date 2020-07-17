@@ -1,8 +1,8 @@
 import React from 'react';
 import Counter from '../components/Counter';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
-import { increase, decrease, increaseBy } from '../store/counter';
+import { RootState } from '../modules';
+import { increase, decrease, increaseBy } from '../modules/counter';
 
 function CounterContainer() {
   const count = useSelector((state: RootState) => state.counter.count);

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Todo } from '../store/todos';
+import { Todo } from '../modules/todos';
 
 type TodoItemProps = {
   todo: Todo;
