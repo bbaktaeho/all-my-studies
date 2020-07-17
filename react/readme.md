@@ -173,6 +173,20 @@
 - redux-observable
 - redux-promise-mmiddleware
 
+## typescript for react
+
+- 설치
+
+  ```
+  npx create-react-app <이름> --typescript
+  ```
+
+- Reacr.FC
+  - 함수형 컴포넌트를 생성할 때 사용되는 타입
+  - generic 타입으로 props 셋팅
+  - 기본적으로 props 에 children: React.ReactNode 을 제공함
+  - function 키워드를 이용해서 컴포넌트를 선언하면 defaultProps 를 제대로 사용할 수 있음
+
 ## etc
 
 - React.memo
