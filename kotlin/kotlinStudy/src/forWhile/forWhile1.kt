@@ -11,10 +11,14 @@ fun main() {
         }
         println()
     }*/
-    for (i in 0 until num) {
+    /*for (i in 0 until num) {
         for (j in 0 until num) {
             print((i+j)%num + 1)
         }
+        println()
+    }*/
+    for (i in 0 until num) {
+        for (j in 0 until num) print((i+j)%num+1)
         println()
     }
 }
