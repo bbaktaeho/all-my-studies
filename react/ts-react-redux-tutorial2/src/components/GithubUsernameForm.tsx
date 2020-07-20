@@ -19,7 +19,7 @@ function GithubUsernameForm({ onSubmitUsername }: GithubUsernameFormProps) {
   return (
     <form onSubmit={onSubmit} className="GithubUsernameForm">
       <input onChange={onChange} value={input} placeholder="github 닉네임 입력"></input>
-      <button>조회</button>
+      <button type="submit">조회</button>
     </form>
   );
 }
