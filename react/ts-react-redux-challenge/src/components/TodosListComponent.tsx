@@ -1,5 +1,5 @@
 import React from 'react';
-import { Todo } from '../redux/reducers/todos';
+import { Todo } from '../redux/todos';
 import TodosItemComponent from './TodosItemComponent';
 
 type TodoListComponentProps = {

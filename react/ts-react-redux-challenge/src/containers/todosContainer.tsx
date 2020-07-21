@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/reducers';
-import { createADD_TODO, createREMOVE_TODO, createTOGGLE_TODO } from '../redux/reducers/todos';
+import { RootState } from '../redux';
+import { createADD_TODO, createREMOVE_TODO, createTOGGLE_TODO } from '../redux/todos';
 import TodosInputComponent from '../components/TodosInputcomponent';
 import TodosListComponent from '../components/TodosListComponent';
 

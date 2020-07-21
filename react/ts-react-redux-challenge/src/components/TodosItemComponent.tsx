@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Todo } from '../redux/reducers/todos';
+import { Todo } from '../redux/todos';
 
 type TodosItemComponentProps = {
   todo: Todo;

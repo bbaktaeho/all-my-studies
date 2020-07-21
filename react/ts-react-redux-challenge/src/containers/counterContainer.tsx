@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/reducers';
+import { RootState } from '../redux';
 import CounterComponent from '../components/CounterComponent';
-import { createINCREASE, createDECREASE, createINCREASE_BY } from '../redux/reducers/counter';
+import { createINCREASE, createDECREASE, createINCREASE_BY } from '../redux/counter';
 
 export default function CounterContainer() {
   const { count } = useSelector((state: RootState) => state.counter);
