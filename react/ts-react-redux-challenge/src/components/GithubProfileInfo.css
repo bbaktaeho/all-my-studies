@@ -1,0 +1,20 @@
+.GithubProfileInfo {
+    width: 400px;
+    margin: 0 auto;
+}
+.GithubProfileInfo .head {
+  display: flex;
+  align-items: center;
+}
+
+.GithubProfileInfo .head img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin-right: 16px;
+}
+
+.GithubProfileInfo .head p {
+  font-weight: bold;
+}
