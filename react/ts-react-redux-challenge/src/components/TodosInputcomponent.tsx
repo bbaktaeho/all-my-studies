@@ -11,8 +11,8 @@ export default function TodosInputComponent({ onInsert }: TodosInputComponentPro
   };
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setValue('');
     onInsert(value);
+    setValue('');
   };
   return (
     <form onSubmit={onSubmit}>

@@ -10,15 +10,15 @@ export default function TodosContainer() {
   const dispatch = useDispatch();
 
   const onInsert = (text: string) => {
-    dispatch(createADD_TODO(text));
+    dispatch(createADD_TODO({ text }));
   };
 
   const onRemove = (id: number) => {
-    dispatch(createREMOVE_TODO(id));
+    dispatch(createREMOVE_TODO({ id }));
   };
 
   const onToggle = (id: number) => {
-    dispatch(createTOGGLE_TODO(id));
+    dispatch(createTOGGLE_TODO({ id }));
   };
 
   return (

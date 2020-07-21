@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/reducers';
-import CounterComponent from '../components/counterComponent';
+import CounterComponent from '../components/CounterComponent';
 import { createINCREASE, createDECREASE, createINCREASE_BY } from '../redux/reducers/counter';
 
 export default function CounterContainer() {

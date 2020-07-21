@@ -4,3 +4,7 @@
 - 타입스크립트로 redux 구현
 - container, component 분리 구현
 - container에서 redux 접근 후 state를 component에게 전달함
+
+# 2020-07-21
+
+- typesafe-actions 적용
