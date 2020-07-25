@@ -1,1 +1,2 @@
-console.log(Math.max(436, 24234));
+const list = [1, 2];
+console.log(Math.max.apply(null, list));
