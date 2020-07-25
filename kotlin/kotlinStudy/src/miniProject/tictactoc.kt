@@ -1,5 +1,4 @@
 package miniProject
-
 import java.lang.Exception
 
 var x: Int = 0
