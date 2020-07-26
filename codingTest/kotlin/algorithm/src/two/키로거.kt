@@ -1,11 +1,13 @@
 package two
 
 fun main() {
+    val result: MutableList<String> = mutableListOf()
     val testCase = readLine()!!.toInt()
     for (i in 1..testCase) {
         val case = readLine()!!
-        println(keyLogger(case))
+        result.add(keyLogger(case))
     }
+    result.forEach { println(it) }
 }
 
 fun keyLogger(case:String): String {
@@ -20,7 +22,7 @@ fun keyLogger(case:String): String {
         }
     }
     right.reverse()
-    return if (left.containsAll(right)) left.joinToString("") else ""
+    return left.joinToString("")+right.joinToString("")
 }
 
 // 컴파일 에
