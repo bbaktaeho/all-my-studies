@@ -5,8 +5,7 @@ fun main() {
     repeat (readLine()!!.toInt()) {
         val parent = mutableMapOf<String, String>()
         val count = mutableMapOf<String, Int>()
-        val friendRelationCount = readLine()!!.toInt()
-        for (relation in 1..friendRelationCount) {
+        repeat (readLine()!!.toInt()) {
             val (x,y) = readLine()!!.split(' ')
             if (!parent.containsKey(x)) {
                 parent[x] = x
