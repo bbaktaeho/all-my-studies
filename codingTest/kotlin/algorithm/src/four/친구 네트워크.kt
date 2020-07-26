@@ -2,7 +2,6 @@ package four
 
 
 fun main() {
-    re
     val testCase = readLine()!!.toInt()
     for (case in 1..testCase) {
         val parent = mutableMapOf<String, String>()
