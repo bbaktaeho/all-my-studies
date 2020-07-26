@@ -2,8 +2,7 @@ package four
 
 
 fun main() {
-    val testCase = readLine()!!.toInt()
-    for (case in 1..testCase) {
+    repeat (readLine()!!.toInt()) {
         val parent = mutableMapOf<String, String>()
         val count = mutableMapOf<String, Int>()
         val friendRelationCount = readLine()!!.toInt()
