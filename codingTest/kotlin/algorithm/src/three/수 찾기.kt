@@ -1,20 +1,23 @@
 package three
 
 fun main() {
-    val N = readLine()!!.toInt()
+    readLine()!!
     val A = readLine()!!.split(' ').map {it.toInt()}
-    val M = readLine()!!.toInt()
+    readLine()!!
     val find = readLine()!!.split(' ').map {it.toInt()}
-    val result = mutableListOf<Int>()
-    for (el in find) result.add(search(el, A))
-    result.forEach { println(it) }
+    val arr = mutableSetOf<Int>()
+    for (el in A) arr.add(el)
+    for (el in find) {
+        if (arr.contains(el)) println(1)
+        else println(0)
+    }
 }
 
-fun search(el: Int, list: List<Int>): Int {
-    var listSet = list.toSet()
-    listSet.find { it == el }?: return 0
-    return 1
-}
+//fun search(el: Int, list: List<Int>): Int {
+//    var listSet = list.toSet()
+//    listSet.find { it == el }?: return 0
+//    return 1
+//}
 
 
 //fun search(el: Int, A: List<Int>): Int {
