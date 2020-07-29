@@ -1,6 +1,5 @@
 package four
 
-
 fun main() {
     repeat (readLine()!!.toInt()) {
         val parent = mutableMapOf<String, String>()
