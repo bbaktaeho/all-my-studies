@@ -6,7 +6,7 @@
 ## 개발 환경
 
 - vscode
-- intellij  
+- intellij IDEA
 
 ## 작성자
 
