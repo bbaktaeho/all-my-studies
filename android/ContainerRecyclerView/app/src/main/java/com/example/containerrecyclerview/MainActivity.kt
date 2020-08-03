@@ -2,6 +2,7 @@ package com.example.containerrecyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         // 리사이클러뷰를 화면에 보여주는 형태를 결정하는 레이아웃 매니저
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
     }
 
 }
