@@ -28,8 +28,15 @@ const isNotLoggedIn = (req, res, next) => {
   else res.status(403).json({ success: false, message: '로그인하지 않은 사용자만 접근 가능' });
 };
 
+const logout = (req, res) => {
+  req.logOut();
+  req.session.destroy();
+  res.status(200).json({ success: true });
+};
+
 module.exports = {
   loginProcess,
   isLoggedIn,
   isNotLoggedIn,
+  logout,
 };

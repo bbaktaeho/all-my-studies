@@ -1,5 +1,5 @@
 const { register } = require('../../controllers/authController');
-const { loginProcess, isNotLoggedIn } = require('../middlewares/auth.middleware');
+const { loginProcess, isNotLoggedIn, isLoggedIn, logout } = require('../middlewares/auth.middleware');
 const router = require('express').Router();
 
 /**
@@ -17,5 +17,11 @@ router.post('/login', isNotLoggedIn, loginProcess);
  * ? register validator
  */
 router.post('/register', isNotLoggedIn, register);
+
+/**
+ * @description 로그아웃
+ * @route POST /auth/logout
+ */
+router.post('/logout', isLoggedIn, logout);
 
 module.exports = router;
