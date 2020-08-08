@@ -18,4 +18,18 @@ const loginProcess = (req, res, next) =>
     });
   })(req, res, next);
 
-module.exports = loginProcess;
+const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) next();
+  else res.status(403).json({ success: false, message: '로그인 필요' });
+};
+
+const isNotLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) next();
+  else res.status(401).send('로그인하지 않은 사용자만 접근 가능합니다.');
+};
+
+module.exports = {
+  loginProcess,
+  isLoggedIn,
+  isNotLoggedIn,
+};

@@ -1,5 +1,5 @@
 const { register } = require('../../controllers/authController');
-const loginProcess = require('../middlewares/auth.middleware');
+const { loginProcess, isNotLoggedIn } = require('../middlewares/auth.middleware');
 const router = require('express').Router();
 
 /**
@@ -8,7 +8,7 @@ const router = require('express').Router();
  * @body {email, password}
  * ? login validator
  */
-router.post('/login', loginProcess);
+router.post('/login', isNotLoggedIn, loginProcess);
 
 /**
  * @description 회원가입
@@ -16,6 +16,6 @@ router.post('/login', loginProcess);
  * @body {email, password, name}
  * ? register validator
  */
-router.post('/register', register);
+router.post('/register', isNotLoggedIn, register);
 
 module.exports = router;
