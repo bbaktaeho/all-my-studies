@@ -32,6 +32,7 @@ passportConfig();
 
 // 라우터
 app.get('/', (req, res, next) => {
+  req.is
   res.send('홈페이지');
 });
 app.use('/auth', authRouter);
