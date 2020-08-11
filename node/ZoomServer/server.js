@@ -21,6 +21,10 @@ io.on('connection', (socket) => {
     console.log(`방: ${roomId}, 유저: ${userId}`);
     socket.join(roomId);
     socket.to(roomId).broadcast.emit('user-connected', userId);
+
+    socket.on('disconnect', () => {
+      socket.to(roomId).broadcast.emit('user-disconnected', userId);
+    });
   });
 });
 
