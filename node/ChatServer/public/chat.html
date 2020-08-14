@@ -10,13 +10,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <title>ChatCord App</title>
+    <title>bbak's ChatRoom</title>
   </head>
 
   <body>
     <div class="chat-container">
       <header class="chat-header">
-        <h1><i class="fas fa-smile"></i> ChatCord</h1>
+        <h1><i class="fas fa-smile"></i> bbak's ChatRoom</h1>
         <a href="index.html" class="btn">Leave Room</a>
       </header>
       <main class="chat-main">
@@ -26,7 +26,9 @@
           <h3><i class="fas fa-users"></i> Users</h3>
           <ul id="users"></ul>
         </div>
-        <div class="chat-messages"></div>
+        <div class="chat-messages">
+          
+        </div>
       </main>
       <div class="chat-form-container">
         <form id="chat-form">
@@ -41,6 +43,7 @@
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"
     ></script>
+    <!-- socket.io client 라이브러리 가져오기 -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/main.js"></script>
   </body>
