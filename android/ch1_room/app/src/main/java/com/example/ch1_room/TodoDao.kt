@@ -8,7 +8,6 @@ interface TodoDao {
     @Query("SELECT * FROM Todo")
     fun getAll(): LiveData<List<Todo>>
 
-
     @Insert
     fun insert(todo: Todo): Unit
 
