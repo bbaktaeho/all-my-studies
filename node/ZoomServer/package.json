@@ -17,6 +17,7 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "peer": "^0.5.3"
   }
 }

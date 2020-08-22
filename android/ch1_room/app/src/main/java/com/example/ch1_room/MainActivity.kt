@@ -4,30 +4,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var test = mutableListOf<String>()
+        val viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(MainViewModel::class.java)
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            TodoDatabase::class.java, "TodoDB"
-        ).allowMainThreadQueries().build()
-
-
-        db.todoDao().getAll().observe(this, Observer { todos ->
+        viewModel.getAll().observe(this, Observer { todos ->
             todo_text.text = todos.toString()
         })
 
-
         todo_add.setOnClickListener {
-            db.todoDao().insert(Todo(todo_edit.text.toString()))
-
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.insert(Todo(todo_edit.text.toString()))
+            }
         }
 
     }
