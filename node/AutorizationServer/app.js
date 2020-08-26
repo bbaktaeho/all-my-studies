@@ -13,8 +13,8 @@ const userRouter = require('./api/routes/user.router');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.use(cookieParser('secretKey'));
-app.use(
+app.use(cookieParser('secretKey')); // 1
+app.use( // 2
   session({
     secret: 'secretKey',
     resave: false,
