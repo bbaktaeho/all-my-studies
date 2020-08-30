@@ -5,7 +5,7 @@ const products = [
   { name: "반팔4", price: 40000 },
 ];
 
-const filter = (func, iter) => {
+module.exports = (func, iter) => {
   let res = [];
   for (const p of iter) {
     if (func(p)) res.push(p);

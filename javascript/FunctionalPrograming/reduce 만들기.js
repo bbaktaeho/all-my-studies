@@ -11,7 +11,7 @@ for (const n of arr) {
   total += n;
 }
 
-const reduce = (func, acc, iter) => {
+module.exports = (func, acc, iter) => {
   if (!iter) {
     iter = acc[Symbol.iterator]();
     acc = iter.next().value;
