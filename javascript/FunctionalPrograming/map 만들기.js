@@ -1,4 +1,4 @@
-const product = [
+const products = [
   { name: "반팔1", price: 15000 },
   { name: "반팔2", price: 20000 },
   { name: "반팔3", price: 3000 },
@@ -13,8 +13,8 @@ const mapF = (func, iter) => {
   return res;
 };
 
-console.log(mapF((p) => p.name, product));
-console.log(mapF((p) => p.price, product));
+console.log(mapF((p) => p.name, products));
+console.log(mapF((p) => p.price, products));
 
 // 이터러블 프로토콜을 따른 map의 다형성
 // console.log(document.querySelectorAll('*').map()); // 배열 상속을 받지 않음, 이터러블은 맞음
