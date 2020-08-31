@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .wrap {
+      position: relative;
+      transform: translate3d(100px, 0, 0);
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: slategray;
+      color: #fff;
+      text-align: center;
+      line-height: 100px;
+      position: absolute;
+      /* all 2s ease-in */
+      /* transition: height 2s ease-in, width 2s ease-in; */
+    }
+    .box:nth-child(2):hover {
+      transform: translate3d(100px, 0, 0);
+    }
+    .box:nth-child(3) {
+      transform: translate3d(200px, 0, 0);
+    }
+  </style>
+
+  <body>
+    <div class="wrap">
+      <div class="box">box 1</div>
+      <div class="box">box 2</div>
+      <div class="box">box 3</div>
+    </div>
+    <script>
+      var box = document.querySelector('.box');
+      box.addEventListener('click', function (e) {
+        e.target.style.height = '200px';
+        e.target.style.width = '200px';
+      });
+    </script>
+  </body>
+</html>

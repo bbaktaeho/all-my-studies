@@ -38,7 +38,26 @@
     - flex-grow
 
 - `z-index`
+
   - position이 static값이 아닌 태그들은 겹칠 수 있음
   - 누가 위로 보이냐는 이슈(기본은 마지막에 만들어진 태그)
   - z-index를 큰 수로 설정하면 가장 위로 올림
   - stacking context
+
+- `margin: 0px auto`
+
+  - 중앙 정렬
+
+- `transition`
+
+  - 애니메이션 효과
+  - 시간값으로 애니매이션 효과를 줄 수 있음
+  - 속성을 , 로 구분함
+  - all 옵션으로 여러 이벤트에 효과를 적용시킬 수 있음
+
+- `transform`
+  - 각도를 다룰 수 있음
+  - translate() 으로 이동이 가능
+  - 보통 translate3d() 를 활용함
+  - gpu 연산으로 빠른 렌더링이 가능해짐
+  - 모바일 웹에서 스와이프할 때 많이 사용
