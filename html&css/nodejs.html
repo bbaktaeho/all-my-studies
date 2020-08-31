@@ -85,6 +85,8 @@
     .task-queue {
       background-color: rgb(215, 240, 215);
       border: 1px solid green;
+      border-top-color: rgb(215, 240, 215);
+      border-bottom-color: rgb(215, 240, 215);
       color: gray;
 
       width: 50px;
@@ -124,7 +126,7 @@
       <p style="background-color: rgb(226, 226, 137)">console.log(3);</p>
       <p style="background-color: green">setTimeout(() => console.log(4), 0);</p>
       <p style="background-color: blue">console.log(5);</p>
-      <p style="background-color: indianred">console.log(6);</p>
+      <p style="background-color: indigo">console.log(6);</p>
       <p style="background-color: purple">console.log(7);</p>
     </div>
 
@@ -145,7 +147,7 @@
         <!-- 스레드 풀 -->
         <div class="thread-pool">Thread Pool</div>
       </div>
-      <div><b style="color: orange">주황색</b>, <b style="color: green">초록색</b>은 비동기 동작</div>
+      <div><b style="color: orange">주황 3s</b>, <b style="color: green">초록 0s</b> 비동기 동작</div>
       <button class="container_button">다음</button>
     </div>
 
@@ -159,16 +161,24 @@
       var loop = document.getElementById('loop');
       var pNodeList = document.querySelectorAll('p');
       var nodeCallStack = document.querySelector('.call-stack');
-      var consoleList = document.querySelector('.console-container');
-      var threadPool = document.querySelector('.thread-pool');
+      var nodeConsoleList = document.querySelector('.console-container');
+      var nodeThreadPool = document.querySelector('.thread-pool');
       var pList = Array.from(pNodeList);
       var callStack = [];
+      var threadPool = [];
 
       button.addEventListener('click', (e) => {
         var p; // p 엘리먼트
         var color; // p 엘리먼트의 백그라운드 컬러
         var node = {};
-        var asyncNode;
+
+        // 스레드 풀이 비어있지 않았다면
+        if (threadPool.length > 0) {
+          for (el of threadPool) {
+            if (el.time == 0) {
+            }
+          }
+        }
 
         // 콜 스택에 할 일이 있다면
         if (callStack.length == 1) {
@@ -176,11 +186,17 @@
             var consoleP = document.createElement('p');
             var consolePText = document.createTextNode(`${callStack[0].value}`);
             consoleP.appendChild(consolePText);
-            consoleList.appendChild(consoleP);
+            nodeConsoleList.appendChild(consoleP);
             callStack.shift();
           } else {
-            asyncNode = callStack.shift();
-            threadPool.innerHTML = `<div style="height: 20px; width: 100%; background-color: ${asyncNode.color}"></div>`;
+            threadPool.push(callStack.shift());
+            threadPool.forEach((e) => {
+              e.div = `<div style="height: 20px; width: 100%; background-color: ${e.color}; margin-bottom: 5px;"></div>`;
+            });
+            nodeThreadPool.innerHTML = threadPool
+              .map((e) => e.div)
+              .toString()
+              .replace(/,/g, '');
           }
         }
         if (pList.length > 0) {
