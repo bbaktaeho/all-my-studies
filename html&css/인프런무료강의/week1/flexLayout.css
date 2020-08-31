@@ -1,0 +1,16 @@
+.wrapper {
+    background-color: slategray;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.wrapper > div {
+    flex-grow: 1;
+    background-color: skyblue;
+    margin: 10px;
+    height: 30px;
+    padding: 0.5rem;
+    color: white;
+}
