@@ -1,0 +1,7 @@
+div > p {
+    border: 1px solid slategray;
+}
+
+#taeho > p:nth-child(2) {
+    color: red;
+}
