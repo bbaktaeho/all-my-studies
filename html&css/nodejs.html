@@ -163,9 +163,11 @@
       var nodeCallStack = document.querySelector('.call-stack');
       var nodeConsoleList = document.querySelector('.console-container');
       var nodeThreadPool = document.querySelector('.thread-pool');
+      var nodeTaskQueue = document.querySelector('.task-queue');
       var pList = Array.from(pNodeList);
       var callStack = [];
       var threadPool = [];
+      var taskQueue = [];
 
       button.addEventListener('click', (e) => {
         var p; // p 엘리먼트
@@ -174,20 +176,34 @@
 
         // 스레드 풀이 비어있지 않았다면
         if (threadPool.length > 0) {
-          for (el of threadPool) {
-            if (el.time == 0) {
-            }
+          const timeZero = threadPool.filter((e) => e.time == 0)[0];
+          if (timeZero) {
+            taskQueue.push(timeZero);
+            threadPool = threadPool.filter((e) => {
+              if (e.time != 0) {
+                e.time = 0;
+                return e;
+              }
+            });
+            nodeThreadPool.innerHTML = threadPool
+              .map((e) => e.div)
+              .toString()
+              .replace(/,/g, '');
+            nodeTaskQueue.innerHTML = taskQueue
+              .map((e) => e.div)
+              .toString()
+              .replace(/,/g, '');
           }
         }
 
         // 콜 스택에 할 일이 있다면
-        if (callStack.length == 1) {
+        if (callStack.length > 0) {
           if (!callStack[0].async) {
             var consoleP = document.createElement('p');
             var consolePText = document.createTextNode(`${callStack[0].value}`);
             consoleP.appendChild(consolePText);
             nodeConsoleList.appendChild(consoleP);
-            callStack.shift();
+            console.log(callStack.shift());
           } else {
             threadPool.push(callStack.shift());
             threadPool.forEach((e) => {
@@ -238,17 +254,22 @@
           // 엘리먼트 구현
           node.div = `<div style="width:20px; float:right; margin-left:5px; height:100%;background-color: ${color}"></div>`;
           callStack.push(node);
-          // 콤마 개빡치네
-          // 정규식 /,/g
-          // appendChild가 있는 줄 몰랐습니다...
-          nodeCallStack.innerHTML = callStack
+          p.remove();
+        }
+        if (callStack.length == 0 && taskQueue.length > 0) {
+          const task = taskQueue.shift();
+          task.async = false;
+          task.div = `<div style="width:20px; float:right; margin-left:5px; height:100%;background-color: ${task.color}"></div>`;
+          callStack.push(task);
+          nodeTaskQueue.innerHTML = taskQueue
             .map((e) => e.div)
             .toString()
             .replace(/,/g, '');
-          p.remove();
-        } else {
-          alert('이제 없어요');
         }
+        nodeCallStack.innerHTML = callStack
+          .map((e) => e.div)
+          .toString()
+          .replace(/,/g, '');
       });
     </script>
   </body>
