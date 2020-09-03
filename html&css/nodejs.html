@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- html, css로 처음으로 스스로 만들어봤습니다. -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @keyframes rotate_image {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .js-container {
+      background-color: #eeeeee;
+      width: 300px;
+      height: 300px;
+      margin-right: 50px;
+      padding-left: 5px;
+    }
+    .js-container p {
+      color: whitesmoke;
+    }
+    /* 
+    .js-container > p:nth-child(2) {
+      background-color: red;
+    }
+    .js-container > p:nth-child(3) {
+      background-color: orange;
+    }
+    .js-container > p:nth-child(4) {
+      background-color: rgb(226, 226, 137);
+    }
+    .js-container > p:nth-child(5) {
+      background-color: green;
+    }
+    .js-container > p:nth-child(6) {
+      background-color: blue;
+    }
+    .js-container > p:nth-child(7) {
+      background-color: indigo;
+    }
+    .js-container > p:nth-child(8) {
+      background-color: purple;
+    } */
+
+    .node-container {
+      margin-top: 100px;
+      background-color: #eeeeee;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      width: 400px;
+      height: 500px;
+      position: relative;
+    }
+    .container_stack {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .call-stack {
+      background-color: #e9e9e9;
+      border: 1px solid black;
+      border-left-color: #e9e9e9;
+      color: gray;
+      text-align: center;
+      float: right;
+      width: 220px;
+      height: 50px;
+    }
+    .container_queue_pool {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-bottom: 60px;
+    }
+    .task-queue {
+      background-color: rgb(215, 240, 215);
+      border: 1px solid green;
+      border-top-color: rgb(215, 240, 215);
+      border-bottom-color: rgb(215, 240, 215);
+      color: gray;
+
+      width: 50px;
+      height: 220px;
+    }
+    .event-loop {
+      width: 100px;
+      height: 100px;
+      animation: rotate_image 3s linear infinite;
+    }
+    .thread-pool {
+      background-color: rgb(205, 227, 252);
+      border: 1px solid blue;
+      color: gray;
+      width: 50px;
+      height: 220px;
+    }
+    .container_button {
+      position: absolute;
+      top: 470px;
+      left: 350px;
+    }
+    .console-container {
+      background-color: #eeeeee;
+      width: 300px;
+      height: 300px;
+      margin-left: 50px;
+      padding-left: 5px;
+    }
+  </style>
+  <body>
+    <!-- 자바스크립트 코드 -->
+    <div class="js-container">
+      <h4>JS</h4>
+      <p style="background-color: red">console.log(1);</p>
+      <p style="background-color: orange">setTimeout(() => console.log(2), 3000);</p>
+      <p style="background-color: rgb(226, 226, 137)">console.log(3);</p>
+      <p style="background-color: green">setTimeout(() => console.log(4), 0);</p>
+      <p style="background-color: blue">console.log(5);</p>
+      <p style="background-color: indigo">console.log(6);</p>
+      <p style="background-color: purple">console.log(7);</p>
+    </div>
+
+    <!-- Node.js 이벤트 루프 -->
+    <div class="node-container">
+      <!-- 스택 컨테이너 -->
+      <div class="container_stack">
+        <!-- 콜스택 -->
+        <div class="call-stack">Call Stack</div>
+      </div>
+
+      <!-- 테스크 큐 그리고 스레드 풀 컨테이너 -->
+      <div class="container_queue_pool">
+        <!-- 테스크 큐 -->
+        <div class="task-queue">Task Queue</div>
+        <!-- 로테이션 이미지 -->
+        <img class="event-loop" src="https://image.flaticon.com/icons/svg/860/860820.svg" alt="" />
+        <!-- 스레드 풀 -->
+        <div class="thread-pool">Thread Pool</div>
+      </div>
+      <div><b style="color: orange">주황 3s</b>, <b style="color: green">초록 0s</b> 비동기 동작</div>
+      <button class="container_button">다음</button>
+    </div>
+
+    <!-- 콘솔창 -->
+    <div class="console-container">
+      <h4>Console</h4>
+    </div>
+
+    <script>
+      var button = document.querySelector('.container_button');
+      var loop = document.getElementById('loop');
+      var pNodeList = document.querySelectorAll('p');
+      var nodeCallStack = document.querySelector('.call-stack');
+      var nodeConsoleList = document.querySelector('.console-container');
+      var nodeThreadPool = document.querySelector('.thread-pool');
+      var nodeTaskQueue = document.querySelector('.task-queue');
+      var pList = Array.from(pNodeList);
+      var callStack = [];
+      var threadPool = [];
+      var taskQueue = [];
+
+      button.addEventListener('click', (e) => {
+        var p; // p 엘리먼트
+        var color; // p 엘리먼트의 백그라운드 컬러
+        var node = {};
+
+        // 스레드 풀이 비어있지 않았다면
+        if (threadPool.length > 0) {
+          const timeZero = threadPool.filter((e) => e.time == 0)[0];
+          if (timeZero) {
+            taskQueue.push(timeZero);
+            threadPool = threadPool.filter((e) => {
+              if (e.time != 0) {
+                e.time = 0;
+                return e;
+              }
+            });
+            nodeThreadPool.innerHTML = threadPool
+              .map((e) => e.div)
+              .toString()
+              .replace(/,/g, '');
+            nodeTaskQueue.innerHTML = taskQueue
+              .map((e) => e.div)
+              .toString()
+              .replace(/,/g, '');
+          }
+        }
+
+        // 콜 스택에 할 일이 있다면
+        if (callStack.length > 0) {
+          if (!callStack[0].async) {
+            var consoleP = document.createElement('p');
+            var consolePText = document.createTextNode(`${callStack[0].value}`);
+            consoleP.appendChild(consolePText);
+            nodeConsoleList.appendChild(consoleP);
+            console.log(callStack.shift());
+          } else {
+            threadPool.push(callStack.shift());
+            threadPool.forEach((e) => {
+              e.div = `<div style="height: 20px; width: 100%; background-color: ${e.color}; margin-bottom: 5px;"></div>`;
+            });
+            nodeThreadPool.innerHTML = threadPool
+              .map((e) => e.div)
+              .toString()
+              .replace(/,/g, '');
+          }
+        }
+        if (pList.length > 0) {
+          p = pList.shift();
+          color = p.style.backgroundColor;
+          node.color = color;
+          if (color == 'orange' || color == 'green') {
+            node.async = true;
+            color == 'orange' ? (node.time = 3) : (node.time = 0);
+          } else node.async = false;
+
+          // 각 코드의 결과 값 할당
+          switch (color) {
+            case 'red':
+              node.value = 1;
+              break;
+            case 'orange':
+              node.value = 2;
+              break;
+            case `rgb(226, 226, 137)`:
+              node.value = 3;
+              break;
+            case 'green':
+              node.value = 4;
+              break;
+            case 'blue':
+              node.value = 5;
+              break;
+            case 'indigo':
+              node.value = 6;
+              break;
+            case 'purple':
+              node.value = 7;
+              break;
+            default:
+              node.value = 'error';
+              break;
+          }
+          // 엘리먼트 구현
+          node.div = `<div style="width:20px; float:right; margin-left:5px; height:100%;background-color: ${color}"></div>`;
+          callStack.push(node);
+          p.remove();
+        }
+        if (callStack.length == 0 && taskQueue.length > 0) {
+          const task = taskQueue.shift();
+          task.async = false;
+          task.div = `<div style="width:20px; float:right; margin-left:5px; height:100%;background-color: ${task.color}"></div>`;
+          callStack.push(task);
+          nodeTaskQueue.innerHTML = taskQueue
+            .map((e) => e.div)
+            .toString()
+            .replace(/,/g, '');
+        }
+        nodeCallStack.innerHTML = callStack
+          .map((e) => e.div)
+          .toString()
+          .replace(/,/g, '');
+      });
+    </script>
+  </body>
+</html>
