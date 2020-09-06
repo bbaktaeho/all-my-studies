@@ -50,10 +50,12 @@ console.log(iter2.next());
 
 for (let i of odds(40)) console.log(i);
 
+console.clear();
 // for of, 전개 연산자, 구조 분해, 나머지 연산자
 console.log(...odds(10));
 console.log([...odds(10), ...odds(20)]);
 
+// 구조 분해
 const [head, ...tail] = odds(5);
 console.log(head);
 console.log(tail);
