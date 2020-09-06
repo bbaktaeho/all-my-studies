@@ -1,8 +1,8 @@
 const products = [
-  { name: "반팔1", price: 15000 },
-  { name: "반팔2", price: 20000 },
-  { name: "반팔3", price: 3000 },
-  { name: "반팔4", price: 40000 },
+  { name: '반팔1', price: 15000 },
+  { name: '반팔2', price: 20000 },
+  { name: '반팔3', price: 3000 },
+  { name: '반팔4', price: 40000 },
 ];
 
 const arr = [1, 2, 3, 4, 5];
@@ -11,7 +11,7 @@ for (const n of arr) {
   total += n;
 }
 
-module.exports = (func, acc, iter) => {
+const reducer = (func, acc, iter) => {
   if (!iter) {
     iter = acc[Symbol.iterator]();
     acc = iter.next().value;

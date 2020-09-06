@@ -1,17 +1,16 @@
 const products = [
-  { name: "반팔1", price: 15000 },
-  { name: "반팔2", price: 20000 },
-  { name: "반팔3", price: 3000 },
-  { name: "반팔4", price: 40000 },
+  { name: '반팔1', price: 15000 },
+  { name: '반팔2', price: 20000 },
+  { name: '반팔3', price: 3000 },
+  { name: '반팔4', price: 40000 },
 ];
 
 // curry 함수 만들기
 // 함수를 값으로 다루면서 받아둔 함수를 내가 원하는 시점에 평가시키는 함수
-// 함수를 받아서 함수를 리턴하고 인자를 받아서 인자가 원하는 개수 만큼의 인자가 들어왔을 때 받아두었던 함수를 나중에 평가시키는 함수
-// map, filter, reduce에 curry 적용
+// 함수를 받아서 함수를 리턴하고, 인자를 받아서 인자가 원하는 개수 만큼의 인자가 들어왔을 때 받아두었던 함수를 나중에 평가시키는 함수
 // f에서 사용할 인자를 대신해서 받음 첫번째인자 a, 나머지인자 ..._
 // f에서 사용할 인자가 두 개 이상이라면 새로운 함수를 리턴, 그렇지 않으면 f 함수 바로 실행
-const curry = (f) => (a, ..._) => _.length ? f(a, ..._) : (..._) => f(a, ..._);
+const curry = (f) => (a, ..._) => (_.length ? f(a, ..._) : (..._) => f(a, ..._));
 
 const map = curry((func, iter) => {
   let res = [];
@@ -41,13 +40,23 @@ const reduce = curry((func, acc, iter) => {
 console.log(map((p) => p.price, products));
 
 // 특정 이하의 상품 뽑기
-console.log(map((p) => p, filter((p) => p.price < 20000, products)));
+console.log(
+  map(
+    (p) => p,
+    filter((p) => p.price < 20000, products)
+  )
+);
 
 // 특정 이하의 상품을 뽑아 가격 더하기
-console.log(reduce(
-  (a, b) => a + b,
-  map((p) => p.price, filter((p) => p.price < 20000, products)),
-));
+console.log(
+  reduce(
+    (a, b) => a + b,
+    map(
+      (p) => p.price,
+      filter((p) => p.price < 20000, products)
+    )
+  )
+);
 
 /**
  * 함수형 프로그래밍에서는 코드를 값으로 다루는 것을 많이 사용함
@@ -59,12 +68,18 @@ console.log(reduce(
 const go = (...args) => reduce((a, f) => f(a), args);
 const pipe = (f, ...fs) => (...as) => go(f(...as), ...fs);
 
-go(0, (a) => a + 1, (a) => a + 10, (a) => a + 100, console.log);
+go(
+  0,
+  (a) => a + 1,
+  (a) => a + 10,
+  (a) => a + 100,
+  console.log
+);
 
 const pipeF = pipe(
   (a, b) => a + b,
   (a) => a + 10,
-  (a) => a + 100,
+  (a) => a + 100
 );
 console.log(pipeF(0, 1));
 // go(0, f, f, f) -> 111
@@ -74,7 +89,7 @@ go(
   filter((p) => p.price < 20000),
   map((p) => p.price),
   reduce((a, b) => a + b),
-  console.log,
+  console.log
 );
 
 const mult = curry((a, b) => a * b);
@@ -121,10 +136,22 @@ go(
 */
 
 // 함수 조합으로 함수 만들기
-const total_price = pipe(map((p) => p.price), reduce((a, b) => a + b));
-const base_total_price = (predi) =>
-  pipe(
-    filter(predi),
-    total_price,
-  );
-go(products, base_total_price((p) => p.price < 20000), console.log);
+const total_price = pipe(
+  map((p) => p.price),
+  reduce((a, b) => a + b)
+);
+const base_total_price = (predi) => pipe(filter(predi), total_price);
+go(
+  products,
+  base_total_price((p) => p.price < 20000),
+  console.log
+);
+
+module.exports = {
+  curry,
+  go,
+  pipe,
+  filter,
+  map,
+  reduce,
+};
