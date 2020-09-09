@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".SecondActivity">
+
+<TextView
+    android:id="@+id/txt_result"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="35dp"
+    android:text="TextView"
+    app:layout_constraintStart_toStartOf="@+id/btn_add"
+    app:layout_constraintTop_toBottomOf="@+id/btn_add" />
+
+<Button
+    android:id="@+id/btn_add"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="273dp"
+    android:text="Button"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<EditText
+    android:id="@+id/edit_first"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="117dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:hint="첫 번째 피연산자"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<EditText
+    android:id="@+id/edit_second"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="26dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:hint="두 번째 피연산자"
+
+    app:layout_constraintStart_toStartOf="@+id/edit_first"
+    app:layout_constraintTop_toBottomOf="@+id/edit_first" />
+
+<Button
+    android:id="@+id/btn_goto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="150dp"
+    android:text="key전달" />
+</RelativeLayout>
