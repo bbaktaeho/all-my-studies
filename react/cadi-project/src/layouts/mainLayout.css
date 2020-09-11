@@ -1,0 +1,33 @@
+.site-layout-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+    margin: 16px 0;
+}
+#components-layout-demo-top .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 24px 16px 0;
+    float: left;
+}
+
+.header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.layout__content {
+    padding: 0 80px;
+}
+
+.footer {
+    text-align: center;
+}
+
+.layout__intro-recruit {
+    display: flex;
+    flex-direction: row;
+}
