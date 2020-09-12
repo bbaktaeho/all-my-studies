@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
@@ -13,11 +15,17 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        TextView textView2 = findViewById(R.id.textView2);
-
+        final TextView textView2 = findViewById(R.id.textView2);
+        final Button btnCheck = findViewById(R.id.btn_check);
         Intent i = getIntent();
-        String data = i.getStringExtra("key");
+        final String data = i.getStringExtra("key");
 
-        textView2.setText(data);
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView2.setText(data);
+            }
+        });
+
     }
 }
