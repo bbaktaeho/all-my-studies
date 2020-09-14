@@ -16,14 +16,12 @@ import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
-    TextView txtExpression;
-    TextView txtResult;
-    List<String> expressionList;
-    List<Integer> checkList; // 1 숫자, 0 연산자
-    Stack<String> operatorStack; // 후위 표기법 저장
-    List<String> resultList;
-    String[] operatorWeight;
-
+    private TextView txtExpression;
+    private TextView txtResult;
+    private List<Integer> checkList; // -1: 이콜, 0: 연산자, 1: 숫자 / 예외 발생을 막는 리스트
+    private Stack<String> operatorStack; // 연산자를 위한 스택
+    private List<String> prefixList; // 전위 표기
+    private List<String> postfixList; // 후위 표기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +31,13 @@ public class MainActivity extends AppCompatActivity {
         this.init();
     }
 
-    // 필드 및 액티비티 초기화
     void init() {
         txtExpression = findViewById(R.id.txt_expression);
         txtResult = findViewById(R.id.txt_result);
-        expressionList = new ArrayList<>();
         checkList = new ArrayList<>();
         operatorStack = new Stack<>();
-        resultList = new ArrayList<>();
-        operatorWeight = new String[]{"-", "+", "%", "/", "X"};
+        prefixList = new ArrayList<>();
+        postfixList = new ArrayList<>();
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -101,35 +97,31 @@ public class MainActivity extends AppCompatActivity {
 
     // 클리어 버튼 이벤트 처리
     public void clearClick(View v) {
-        expressionList.clear();
+        prefixList.clear();
         checkList.clear();
         txtExpression.setText("");
         txtResult.setText("");
-
-        Log.d("expressionList", String.valueOf(expressionList));
-        Log.d("checkList", String.valueOf(checkList));
+        operatorStack.clear();
+        postfixList.clear();
     }
 
     // 지우기 버튼 이벤트 처리
     public void deleteClick(View v) {
-        if (expressionList.size() != 0) {
-            expressionList.remove(expressionList.size() - 1);
+        if (prefixList.size() != 0) {
+            prefixList.remove(prefixList.size() - 1);
             checkList.remove(checkList.size() - 1);
-            txtExpression.setText(TextUtils.join(" ", expressionList));
-            Log.d("expressionList", String.valueOf(expressionList));
+            txtExpression.setText(TextUtils.join(" ", prefixList));
+            Log.d("prefixList", String.valueOf(prefixList));
         }
     }
 
     void addNumber(String str) {
         checkList.add(1); // 숫자가 들어왔는지 체크리스트에 표시
-        resultList.add(str); // 숫자는 결과리스트에 담아둠
         txtExpression.append(str); // UI
     }
 
     void addOperator(String str) {
         try {
-            int i = -1;
-            int weight = 0;
             if (checkList.isEmpty()) { // 처음 연산자 사용 막기
                 Toast.makeText(getApplicationContext(), "연산자가 올 수 없습니다.", Toast.LENGTH_SHORT).show();
                 return;
@@ -138,15 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             checkList.add(0);
-            if (!operatorStack.isEmpty()) {
-                for (String s : operatorWeight) {
-                    i++;
-                    if (operatorStack.get(operatorStack.size()-1).equals(s)) {
-                        weight = i;
-                        break;
-                    }
-                }
-            }else operatorStack.push(str);
             txtExpression.append(" " + str + " ");
         } catch (Exception e) {
             Log.e("addOperator ERROR", e.toString());
@@ -154,42 +137,87 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 표현식 변경
-    public void insertExpression(String str) {
-        try {
-            txtExpression.append(Integer.parseInt(str) + "");
-        } catch (Exception e) {
-            // operator
-            txtExpression.append(" " + str + " ");
-            Collections.addAll(expressionList, txtExpression.getText().toString().split(" "));
-        } finally {
-            Log.e("expressionList", String.valueOf(expressionList));
-        }
-    }
-
     // 이콜 버튼 이벤트 처리
     public void equalClick(View v) {
         if (txtExpression.length() == 0) return;
 
-        Collections.addAll(expressionList, txtExpression.getText().toString().split(" "));
-        Log.i("expressionList", String.valueOf(expressionList));
+        Collections.addAll(prefixList, txtExpression.getText().toString().split(" "));
+        result();
     }
 
     // 연산자 우선순위 *,/,%,+,-
-    void calculator() {
-        int i = 0;
-        int op1, op2;
-        double result = 0.0;
-        while (true) {
-            while (!expressionList.get(i++).equals("X")) {
-                if (expressionList.size() == i) break;
-            }
-            op1 = Integer.parseInt(expressionList.remove(i - 2));
-            expressionList.remove(i - 2);
-            op2 = Integer.parseInt(expressionList.get(i - 2));
-            result = op1 * op2;
-            expressionList.add(i - 2, String.valueOf(result));
-
+    int getWeight(String operator) {
+        int weight = 0;
+        switch (operator) {
+            case "X":
+            case "/":
+                weight = 5;
+                break;
+            case "%":
+                weight = 3;
+                break;
+            case "+":
+            case "-":
+                weight = 1;
+                break;
         }
+        return weight;
+    }
+
+    boolean isNumber(String str) {
+        boolean result = true;
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            result = false;
+        }
+        return result;
+    }
+
+    void prefixToPostfix() {
+        for (String item : prefixList) {
+            // 피연산자
+            if (isNumber(item)) postfixList.add(String.valueOf(Double.parseDouble(item)));
+                // 연산자
+            else {
+                if (operatorStack.isEmpty()) operatorStack.push(item);
+                else {
+                    if (getWeight(operatorStack.peek()) >= getWeight(item)) {
+                        postfixList.add(operatorStack.pop());
+                        operatorStack.push(item);
+                    } else operatorStack.push(item);
+                }
+            }
+        }
+        while (!operatorStack.isEmpty()) postfixList.add(operatorStack.pop());
+
+        Log.i("prefixList", String.valueOf(prefixList));
+        Log.i("postfixList", String.valueOf(postfixList));
+    }
+
+    String calculate(String num1, String num2, String op) {
+        Log.i("calculate", num1 + ',' + num2 + ',' + op);
+        return "555";
+    }
+
+//    [1,1,+,1,+,1,5,x,-]
+
+    void result() {
+        int i = 0;
+        prefixToPostfix();
+        try {
+            while (postfixList.size() != 1) {
+                if (!isNumber(postfixList.get(i))) {
+                    postfixList.add(i - 2, calculate(postfixList.remove(i - 2), postfixList.remove(i - 2), postfixList.remove(i - 2)));
+                    Log.d("result while!!!!!!!", String.valueOf(postfixList));
+                    i = -1;
+                }
+                i++;
+            }
+        } catch (Exception e) {
+            Log.e("resultError", e.toString());
+        }
+        Log.i("operatorStack", String.valueOf(operatorStack));
+        Log.i("postfixList", String.valueOf(postfixList));
     }
 }
