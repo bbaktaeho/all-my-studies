@@ -44,8 +44,14 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
     }
 
-    // 클리어, 지우기, 결과 버튼을 제외한 이벤트 처리 함수
+    // 클리어, 지우기, 결과 버튼을 제외한 이벤트 처리
     public void buttonClick(View v) {
+        if (!checkList.isEmpty() && checkList.get(checkList.size()-1) == -1) {
+            txtExpression.setText(txtResult.getText().toString());
+            checkList.clear();
+            checkList.add(1);
+            txtResult.setText("");
+        }
         switch (v.getId()) {
             case R.id.btn_one:
                 addNumber("1");
@@ -77,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_zero:
                 addNumber("0");
                 break;
+            case R.id.btn_dot:
+                addNumber(".");
+                break;
             case R.id.btn_division:
                 addOperator("/");
                 break;
@@ -107,19 +116,31 @@ public class MainActivity extends AppCompatActivity {
 
     // 지우기 버튼 이벤트 처리
     public void deleteClick(View v) {
-        if (prefixList.size() != 0) {
-            prefixList.remove(prefixList.size() - 1);
+        if (txtExpression.length() != 0) {
             checkList.remove(checkList.size() - 1);
-            txtExpression.setText(TextUtils.join(" ", prefixList));
-            Log.d("prefixList", String.valueOf(prefixList));
+            String[] ex = txtExpression.getText().toString().split(" ");
+            List<String> li = new ArrayList<String>();
+            Collections.addAll(li, ex);
+            li.remove(li.size()-1);
+            if(!isNumber(li.get(li.size()-1))) li.add(li.remove(li.size()-1)+" ");
+            txtExpression.setText(TextUtils.join(" ", li));
         }
+//        else if (txtExpression.length() != 0 && txtResult.length() != 0) {
+//            txtExpression.setText("");
+//            txtResult.setText("");
+//        }
     }
 
+    // 숫자 버튼 이벤트 처리
     void addNumber(String str) {
+        if (str.equals(".")) {
+
+        }
         checkList.add(1); // 숫자가 들어왔는지 체크리스트에 표시
         txtExpression.append(str); // UI
     }
 
+    // 연산자 버튼 이벤트 처리
     void addOperator(String str) {
         try {
             if (checkList.isEmpty()) { // 처음 연산자 사용 막기
@@ -142,10 +163,11 @@ public class MainActivity extends AppCompatActivity {
         if (txtExpression.length() == 0) return;
 
         Collections.addAll(prefixList, txtExpression.getText().toString().split(" "));
+        checkList.add(-1);
         result();
     }
 
-    // 연산자 우선순위 *,/,%,+,-
+    // 연산자 가중치 (우선순위 *,/,%,+,-)
     int getWeight(String operator) {
         int weight = 0;
         switch (operator) {
@@ -164,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
         return weight;
     }
 
+    // 숫자 판별
     boolean isNumber(String str) {
         boolean result = true;
         try {
@@ -174,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    // 전위 -> 후위
     void prefixToPostfix() {
         for (String item : prefixList) {
             // 피연산자
@@ -195,28 +219,50 @@ public class MainActivity extends AppCompatActivity {
         Log.i("postfixList", String.valueOf(postfixList));
     }
 
+    // 계산
     String calculate(String num1, String num2, String op) {
+        double first = Double.parseDouble(num1);
+        double second = Double.parseDouble(num2);
         Log.i("calculate", num1 + ',' + num2 + ',' + op);
-        return "555";
+        double result = 0.0;
+        try {
+            switch (op) {
+                case "X":
+                    result = first * second;
+                    break;
+                case "/":
+                    result = first / second;
+                    break;
+                case "%":
+                    result = first % second;
+                    break;
+                case "+":
+                    result = first + second;
+                    break;
+                case "-":
+                    result = first - second;
+                    break;
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "연산할 수 없습니다.", Toast.LENGTH_SHORT).show();
+        }
+        return String.valueOf(result);
     }
 
-//    [1,1,+,1,+,1,5,x,-]
-
+    // 최종 결과
     void result() {
         int i = 0;
         prefixToPostfix();
-        try {
-            while (postfixList.size() != 1) {
-                if (!isNumber(postfixList.get(i))) {
-                    postfixList.add(i - 2, calculate(postfixList.remove(i - 2), postfixList.remove(i - 2), postfixList.remove(i - 2)));
-                    Log.d("result while!!!!!!!", String.valueOf(postfixList));
-                    i = -1;
-                }
-                i++;
+        while (postfixList.size() != 1) {
+            if (!isNumber(postfixList.get(i))) {
+                postfixList.add(i - 2, calculate(postfixList.remove(i - 2), postfixList.remove(i - 2), postfixList.remove(i - 2)));
+                Log.d("result while!!!!!!!", String.valueOf(postfixList));
+                i = -1;
             }
-        } catch (Exception e) {
-            Log.e("resultError", e.toString());
+            i++;
         }
+        txtResult.setText(postfixList.remove(0));
+        prefixList.clear();
         Log.i("operatorStack", String.valueOf(operatorStack));
         Log.i("postfixList", String.valueOf(postfixList));
     }
