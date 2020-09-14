@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         this.init();
     }
 
+    // 필드 초기화
     void init() {
         txtExpression = findViewById(R.id.txt_expression);
         txtResult = findViewById(R.id.txt_result);
