@@ -122,17 +122,16 @@ public class MainActivity extends AppCompatActivity {
             List<String> li = new ArrayList<String>();
             Collections.addAll(li, ex);
             li.remove(li.size()-1);
-            if(!isNumber(li.get(li.size()-1))) li.add(li.remove(li.size()-1)+" ");
+            // 마지막이 연산자일 때 " " 빈칸 추가
+            if(li.size() > 0 && !isNumber(li.get(li.size()-1))) li.add(li.remove(li.size()-1)+" ");
             txtExpression.setText(TextUtils.join(" ", li));
         }
-//        else if (txtExpression.length() != 0 && txtResult.length() != 0) {
-//            txtExpression.setText("");
-//            txtResult.setText("");
-//        }
+        txtResult.setText("");
     }
 
     // 숫자 버튼 이벤트 처리
     void addNumber(String str) {
+        // (보류)
         if (str.equals(".")) {
 
         }
