@@ -297,6 +297,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#85FFFFFF"
                 android:text="."
+                android:onClick="buttonClick"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp" />
 
