@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtResult;
     private List<Integer> checkList; // -1: 이콜, 0: 연산자, 1: 숫자, 2: . / 예외 발생을 막는 리스트
     private Stack<String> operatorStack; // 연산자를 위한 스택
-    private List<String> prefixList; // 전위 표기
+    private List<String> infixList; // 중위 표기
     private List<String> postfixList; // 후위 표기
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         txtResult = findViewById(R.id.txt_result);
         checkList = new ArrayList<>();
         operatorStack = new Stack<>();
-        prefixList = new ArrayList<>();
+        infixList = new ArrayList<>();
         postfixList = new ArrayList<>();
 
         ActionBar actionBar = getSupportActionBar();
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 클리어 버튼 이벤트 처리
     public void clearClick(View v) {
-        prefixList.clear();
+        infixList.clear();
         checkList.clear();
         txtExpression.setText("");
         txtResult.setText("");
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "숫자를 제대로 입력해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
-        Collections.addAll(prefixList, txtExpression.getText().toString().split(" "));
+        Collections.addAll(infixList, txtExpression.getText().toString().split(" "));
         checkList.add(-1);
         result();
     }
@@ -191,8 +191,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 전위 -> 후위
-    void prefixToPostfix() {
-        for (String item : prefixList) {
+    void infixToPostfix() {
+        for (String item : infixList) {
             // 피연산자
             if (isNumber(item)) postfixList.add(String.valueOf(Double.parseDouble(item)));
             // 연산자
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
     // 최종 결과
     void result() {
         int i = 0;
-        prefixToPostfix();
+        infixToPostfix();
         while (postfixList.size() != 1) {
             if (!isNumber(postfixList.get(i))) {
                 postfixList.add(i - 2, calculate(postfixList.remove(i - 2), postfixList.remove(i - 2), postfixList.remove(i - 2)));
@@ -238,6 +238,6 @@ public class MainActivity extends AppCompatActivity {
             i++;
         }
         txtResult.setText(postfixList.remove(0));
-        prefixList.clear();
+        infixList.clear();
     }
 }
