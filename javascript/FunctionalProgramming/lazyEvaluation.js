@@ -31,4 +31,8 @@ const it2 = L.filter((a) => a % 2, [1, 2, 3, 4]);
 // console.log(it2.next());
 // console.log([...it2]); // next를 전에 한 번 사용해서 평가된 녀석은 빼고 펼쳐짐
 
+L.entries = function* (obj) {
+  for (let key in obj) yield [key, obj[key]];
+};
+
 module.exports = L;
