@@ -80,3 +80,5 @@ console.timeEnd('');
 console.time('');
 go(L.range(100000), take(5), console.log);
 console.timeEnd('');
+
+module.exports = { range, take };

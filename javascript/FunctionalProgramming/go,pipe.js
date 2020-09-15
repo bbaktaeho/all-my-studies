@@ -3,10 +3,12 @@
  */
 
 const { reduce } = require('./map,filter,reduce');
+const { curryReduce } = require('./curryFunction');
+console.clear();
 
 // 인자들을 받아서 하나로 축약(reduce)
 // 즉시 인자들을 전달해서 평가하는 함수
-const go = (...args) => reduce((acc, f) => f(acc), args);
+const go = (...args) => curryReduce((acc, f) => f(acc), args);
 go(
   0,
   (a) => a + 1,

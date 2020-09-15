@@ -1,11 +1,11 @@
-const list = [1, 2, 3, [4, 5, 6], { key: "ef25gdf", value: "val" }];
-const str = "문자열 입니다.";
+const list = [1, 2, 3, [4, 5, 6], { key: 'ef25gdf', value: 'val' }];
+const str = '문자열 입니다.';
 const set = new Set([4, 5, 6, 6]);
 const map = new Map([
-  ["key1", 7],
-  ["key2", 7],
-  ["key3", 8],
-  ["key4", 9],
+  ['key1', 7],
+  ['key2', 7],
+  ['key3', 8],
+  ['key4', 9],
 ]);
 
 // es5
@@ -30,6 +30,25 @@ for (let m of map) console.log(m); // entries
 for (let m of map.keys()) console.log(m);
 for (let m of map.values()) console.log(m);
 for (let m of map.entries()) console.log(m);
+
+// !-------------------------------------
+/**
+ * ? for of 가 하는 일
+ */
+var res = [];
+for (let item of [1, 2, 3, 4]) {
+  res.push[item];
+}
+// 위 코드가 동작하는 방법
+var res = [];
+let iter = [1, 2, 3, 4];
+iter = iter[Symbol.iterator]();
+let cur;
+while (!(cur = iter.next()).done) {
+  let item = cur.value;
+  res.push(item);
+}
+// !-------------------------------------
 
 /**
  * @description 이터러블과 이터레이터 프로토콜
