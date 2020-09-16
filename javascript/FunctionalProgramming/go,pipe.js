@@ -2,7 +2,6 @@
  * 코드를 값으로 다루어 표현력 높이기
  */
 
-const { reduce } = require('./map,filter,reduce');
 const { curryReduce } = require('./curryFunction');
 console.clear();
 
