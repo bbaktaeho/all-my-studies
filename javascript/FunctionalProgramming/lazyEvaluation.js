@@ -1,4 +1,5 @@
-const { curry } = require('./curryFunction');
+const { curry, curryMap } = require('./curryFunction');
+const { pipe, go } = require('./go,pipe');
 console.clear();
 /**
  * 지연성을 가진 함수들
@@ -70,5 +71,22 @@ L.deepFlat = function* f(iter) {
     else yield item;
   }
 };
-console.log(...L.deepFlat([1, [2, [3, 4], [[5]]]])); // 오진다
+// console.log(...L.deepFlat([1, [2, [3, 4], [[5]]]])); // 오진다
+
+// 플랫맵은 최신 문법에 생겼음!
+// L.flatMap
+L.flatMap = curry(pipe(L.map, L.flatten));
+
+// const test = L.flatMap(
+//   curryMap((a) => a * a),
+//   [
+//     [1, 2],
+//     [3, 4],
+//     [5, 6, 7],
+//   ]
+// );
+// console.log([...test]);
+
+// 기존 문법의 Array.prototype.flatMap
+// console.log([[1, 2], [3, 4], [5, 6, 7], 8, 9, [10]].flatMap((a) => a));
 module.exports = L;
