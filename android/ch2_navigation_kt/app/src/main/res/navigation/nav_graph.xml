@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="kr.teamcadi.ch2_navigation_kt.MainFragment"
+        android:label="메인 화면"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="kr.teamcadi.ch2_navigation_kt.SecondFragment"
+        android:label="두 번째 화면"
+        tools:layout="@layout/fragment_second" >
+        <argument
+            android:name="text"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
