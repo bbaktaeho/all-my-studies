@@ -11,7 +11,7 @@
         android:id="@+id/tv_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="항목 선택 결과는?"></TextView>
+        android:text="항목 선택 결과는?" />
 
 
 
@@ -19,11 +19,5 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="결과 선택이 완료되었습니다."></TextView>
 
 </LinearLayout>
