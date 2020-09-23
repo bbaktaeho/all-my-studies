@@ -5,7 +5,7 @@ function add10(input, callback) {
   }, 500);
 }
 
-add10(5, (res) => {
+var a = add10(5, (res) => {
   add10(res, (res) => {
     add10(res, (res) => {
       add10(res, (res) => {
@@ -16,13 +16,13 @@ add10(5, (res) => {
 });
 
 // promise 체인 패턴
-function add20(input) {
+var b = function add20(input) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(input + 20);
     }, 500);
   });
-}
+};
 add20(5).then(add20).then(add20).then(add20).then(console.log);
 
 const fetchNum = new Promise((resolve, reject) => {
