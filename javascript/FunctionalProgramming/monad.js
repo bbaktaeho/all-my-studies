@@ -1,6 +1,5 @@
 const delay100 = (a) => new Promise((resolve) => setTimeout(() => resolve(a), 100));
 
-const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
 const add5 = (a) => a + 5;
 
 // const result1 = go1(go1(10, add5), console.log);

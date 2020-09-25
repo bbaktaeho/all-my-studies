@@ -39,5 +39,6 @@ fetchNum
   .then(console.log);
 
 // ! promise.then의 중요한 규칙
+// ? then 으로 꺼냈을 때 반드시 Promise가 아닐 수 있다.
 console.clear();
 Promise.resolve(Promise.resolve(Promise.resolve(1))).then(console.log);

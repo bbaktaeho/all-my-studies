@@ -5,6 +5,8 @@
 const { curryReduce } = require('./curryFunction');
 console.clear();
 
+const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
+
 // 인자들을 받아서 하나로 축약(reduce)
 // 즉시 인자들을 전달해서 평가하는 함수
 const go = (...args) => curryReduce((acc, f) => f(acc), args);
@@ -32,4 +34,4 @@ const func2 = pipe(
 console.log(func1(0));
 console.log(func2(0, 1));
 
-module.exports = { go, pipe };
+module.exports = { go, pipe, go1 };

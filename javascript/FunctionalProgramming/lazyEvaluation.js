@@ -1,5 +1,5 @@
 const { curry, curryMap } = require('./curryFunction');
-const { pipe, go } = require('./go,pipe');
+const { pipe, go, go1 } = require('./go,pipe');
 console.clear();
 /**
  * 지연성을 가진 함수들
@@ -23,7 +23,7 @@ L.range = function* (len) {
 
 // L.map
 L.map = curry(function* (func, iter) {
-  for (let item of iter) yield func(item);
+  for (let item of iter) yield go1(item, func);
 });
 // const it = L.map((a) => a + 10, [1, 2, 3]); // 여기서 아무것도 진행되지 않음. 즉, 평가를 하지 않는다는 것
 // console.log([...it]); // next() 또는 ...연산자로 평가
