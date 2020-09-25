@@ -18,6 +18,12 @@ const products = require('./products');
  */
 const curry = (f) => (a, ..._) => (_.length ? f(a, ..._) : (..._) => f(a, ..._));
 
+// 이터러블인지 확인하기
+const isIterable = (iter) => iter && iter[Symbol.iterator];
+
+//
+const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
+
 const curryMap = curry((func, iter) => {
   let res = [];
   for (item of iter) res.push(func(item));
@@ -36,9 +42,18 @@ const curryReduce = curry((func, acc, iter) => {
   if (!iter) {
     iter = acc[Symbol.iterator]();
     acc = iter.next().value;
+  } else {
+    iter = iter[Symbol.iterator]();
   }
-  for (item of iter) acc = func(acc, item);
-  return acc;
+  return go1(acc, function recur(acc) {
+    let cur;
+    while (!(cur = iter.next()).done) {
+      const a = cur.value;
+      acc = func(acc, a);
+      if (acc instanceof Promise) return acc.then(recur);
+    }
+    return acc;
+  });
 });
 
-module.exports = { curry, curryMap, curryFilter, curryReduce };
+module.exports = { curry, curryMap, curryFilter, curryReduce, isIterable };
