@@ -16,13 +16,13 @@ var a = add10(5, (res) => {
 });
 
 // promise 체인 패턴
-var b = function add20(input) {
+function add20(input) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(input + 20);
     }, 500);
   });
-};
+}
 add20(5).then(add20).then(add20).then(add20).then(console.log);
 
 const fetchNum = new Promise((resolve, reject) => {
@@ -37,3 +37,7 @@ fetchNum
     });
   })
   .then(console.log);
+
+// ! promise.then의 중요한 규칙
+console.clear();
+Promise.resolve(Promise.resolve(Promise.resolve(1))).then(console.log);
