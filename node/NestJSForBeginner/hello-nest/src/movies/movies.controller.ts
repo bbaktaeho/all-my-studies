@@ -9,13 +9,16 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { Movie } from './entities/movie.entity';
+import { MoviesService } from './movies.service';
 
 // entry point -> movies
 @Controller('movies')
 export class MoviesController {
+  constructor(private readonly moviesService: MoviesService) {}
   @Get()
-  getAll() {
-    return '모든 영화를 리턴';
+  getAll(): Movie[] {
+    return this.moviesService.getAll();
   }
 
   @Get('/search')
@@ -25,19 +28,17 @@ export class MoviesController {
 
   @Get('/:id')
   getMovie(@Param('id') movieId: string) {
-    return `영화 하나만 리턴 ${movieId}`;
+    return this.moviesService.getOne(movieId);
   }
 
   @Post()
   create(@Body() movieData) {
-    console.log(movieData);
-
-    return movieData;
+    return this.moviesService.createMovie(movieData);
   }
 
   @Delete('/:id')
   remove(@Param('id') movieId: string) {
-    return 'Remove Movie';
+    return this.moviesService.removeOne(movieId);
   }
 
   @Patch('/:id')
