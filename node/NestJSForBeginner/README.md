@@ -134,3 +134,11 @@ Commands:
   - 개발 : `npm run start:dev`
   - 디버깅 : `npm run start:debug`
   - 배포 : `npm run start:prod`
+
+### Library
+
+- class-validator
+- class-transformer
+  - DTO 타입 체킹
+- @nestjs/mapped-types
+  - 기존에 생성했던 DTO에 추가 옵션을 줌으로서 새로운 DTO 생성
