@@ -8,12 +8,16 @@ import {
   Post,
   Put,
   Query,
-} from "@nestjs/common";
-import { Movie } from "./entities/movie.entity";
-import { MoviesService } from "./movies.service";
+  Req,
+  Res,
+} from '@nestjs/common';
+import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
+import { Movie } from './entities/movie.entity';
+import { MoviesService } from './movies.service';
 
 // entry point -> movies
-@Controller("movies")
+@Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
   @Get()
@@ -21,28 +25,28 @@ export class MoviesController {
     return this.moviesService.getAll();
   }
 
-  @Get("/search")
-  search(@Query("year") searchingYear: string) {
+  @Get('/search')
+  search(@Query('year') searchingYear: string) {
     return `We are searching ${searchingYear}`;
   }
 
-  @Get("/:id")
-  getMovie(@Param("id") movieId: string) {
+  @Get('/:id')
+  getMovie(@Param('id') movieId: number) {
     return this.moviesService.getOne(movieId);
   }
 
   @Post()
-  create(@Body() movieData) {
+  create(@Body() movieData: CreateMovieDto) {
     return this.moviesService.createMovie(movieData);
   }
 
-  @Delete("/:id")
-  remove(@Param("id") movieId: string) {
+  @Delete('/:id')
+  remove(@Param('id') movieId: number) {
     return this.moviesService.removeOne(movieId);
   }
 
-  @Patch("/:id")
-  patch(@Param("id") movieId: string, @Body() updateData) {
+  @Patch('/:id')
+  patch(@Param('id') movieId: number, @Body() updateData: UpdateMovieDto) {
     return this.moviesService.updateMovie(movieId, updateData);
   }
 }
