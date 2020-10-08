@@ -1,6 +1,5 @@
 const delay100 = (a) => new Promise((resolve) => setTimeout(() => resolve(a), 100));
 
-const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
 const add5 = (a) => a + 5;
 
 // const result1 = go1(go1(10, add5), console.log);
@@ -23,7 +22,3 @@ Promise.resolve(2)
   .then(g)
   .then(f)
   .then((r) => console.log(r));
-
-// Klesisli Composition
-// 오류가 있을 수 있는 상황에서의 함수 합성 방법을 안전하게 하는 하나의 규칙
-// 프로미스는 Klesisli Composition을 도와주는 도구

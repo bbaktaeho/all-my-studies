@@ -1,0 +1,134 @@
+<script src="./lib/fx.js"></script>
+
+<script>
+  function f(limit, list) {
+    let acc = 0;
+    for (const item of list) {
+      if (item % 2) {
+        const m = item * item;
+        acc += m;
+        if (--limit == 0) break;
+      }
+    }
+    console.log(acc);
+  }
+
+  f(3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+</script>
+
+<script>
+  /**
+   * 1. if를 filter로 -> L.filter
+   */
+  function f1(limit, list) {
+    let acc = 0;
+    for (const item of L.filter((a) => a % 2, list)) {
+      const m = item * item;
+      acc += m;
+      if (--limit == 0) break;
+    }
+    console.log('f1:', acc);
+  }
+
+  f1(3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+</script>
+
+<script>
+  // 값 변화 후 변수 할당을 map으로
+  function f2(limit, list) {
+    let acc = 0;
+    for (const item of L.map(
+      (a) => a * a,
+      L.filter((a) => a % 2, list)
+    )) {
+      acc += item;
+      if (--limit == 0) break;
+    }
+    console.log('f2:', acc);
+  }
+
+  f2(3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+</script>
+
+<script>
+  // break를 take로
+  function f3(limit, list) {
+    let acc = 0;
+    for (const item of L.take(
+      limit,
+      L.map(
+        (a) => a * a,
+        L.filter((a) => a % 2, list)
+      )
+    )) {
+      acc += item;
+    }
+    console.log('f3:', acc);
+  }
+
+  f3(3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+</script>
+
+<script>
+  // 축약 및 합산을 reduce로
+
+  function f4(limit, list) {
+    _.go(
+      list,
+      L.filter((a) => a % 2),
+      L.map((a) => a * a),
+      L.take(limit),
+      _.reduce((acc, a) => acc + a),
+      console.log
+    );
+  }
+
+  f4(3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+</script>
+
+<script>
+  function basicWhile(end) {
+    let i = 0;
+    while (i < end) {
+      console.log(i);
+      ++i;
+    }
+  }
+  basicWhile(10);
+</script>
+
+<script>
+  // while을 range로
+  // 효과를 each로 구분
+  function basicWhile(end) {
+    _.each(console.log, L.range(end));
+  }
+  basicWhile(10);
+</script>
+
+<script>
+  console.clear();
+  // 별 그리기
+  _.go(
+    L.range(1, 6),
+    L.map(L.range),
+    L.map(L.map((_) => '*')),
+    L.map(_.reduce((a, b) => `${a}${b}`)),
+    _.reduce((a, b) => `${a}\n${b}`),
+    console.log
+  );
+
+  // 구구단
+  _.go(
+    L.range(2, 10),
+    L.map((a) =>
+      _.go(
+        L.range(1, 10),
+        L.map((b) => `${a}x${b}=${a * b}`),
+        _.reduce((a, b) => `${a}\n${b}`)
+      )
+    ),
+    _.reduce((a, b) => `${a}\n\n${b}`),
+    console.log
+  );
+</script>

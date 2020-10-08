@@ -53,11 +53,17 @@ test('L.range', 10, () => curryReduce(add, L.range(1000000)));
  */
 const take = curry((limit, iter) => {
   let res = [];
-  for (let item of iter) {
-    res.push(item);
-    if (res.length == limit) return res;
-  }
-  return res;
+  iter = iter[Symbol.iterator]();
+  return (function recur() {
+    let cur;
+    while (!(cur = iter.next()).done) {
+      const item = cur.value;
+      if (item instanceof Promise) return item.then((item) => ((res.push(item), res).length == limit ? res : recur()));
+      res.push(item);
+      if (res.length == limit) return res;
+    }
+    return res;
+  })();
 });
 
 console.time('');
