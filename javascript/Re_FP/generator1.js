@@ -4,10 +4,10 @@
  */
 
 function* gen() {
-    yield 1;
-    yield 2;
-    yield 3;
-    return 100; // 리턴 값은 done이 true가 될 때 나오는 값 (순회는 하지 않음)
+  yield 1;
+  yield 2;
+  yield 3;
+  return 100; // 리턴 값은 done이 true가 될 때 나오는 값 (순회는 하지 않음)
 }
 var iter = gen();
 console.log(iter[Symbol.iterator]() == iter);

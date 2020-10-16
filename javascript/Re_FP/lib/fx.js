@@ -40,7 +40,7 @@ const go = (...args) => reduce((acc, f) => f(acc), args);
  */
 const pipe = (f, ...fs) => (...as) => go(f(...as), ...fs);
 
-module.exports = { map, filter, reduce, go, pipe };
+module.exports = { curry, map, filter, reduce, go, pipe };
 
 // var names = map(p => p.name, products);
 // var prices = map(p => p.price, products);
