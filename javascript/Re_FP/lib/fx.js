@@ -40,7 +40,23 @@ const go = (...args) => reduce((acc, f) => f(acc), args);
  */
 const pipe = (f, ...fs) => (...as) => go(f(...as), ...fs);
 
-module.exports = { curry, map, filter, reduce, go, pipe };
+const range = len => {
+  let res = [];
+  let i = -1;
+  while (++i < len) res.push(i);
+  return res;
+};
+
+const take = curry((limit, iter) => {
+  let res = [];
+  for (const item of iter) {
+    res.push(item);
+    if (res.length == limit) return res;
+  }
+  return res;
+});
+
+module.exports = { curry, map, filter, reduce, go, pipe, take, range };
 
 // var names = map(p => p.name, products);
 // var prices = map(p => p.price, products);
