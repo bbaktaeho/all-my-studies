@@ -17,4 +17,6 @@ L.filter = curry(function* (func, iter) {
   for (const item of iter) if (func(item)) yield item;
 });
 
-module.exports = L;
+L.entries = function* (obj) {
+  for (const i in obj) yield [i, obj[i]];
+};

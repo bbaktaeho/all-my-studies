@@ -1,5 +1,4 @@
-const { go, range, map, filter, take } = require('../lib/fx');
-const L = require('../lib/lazy.fx');
+const { L, go, range, map, filter, take } = require('../lib/fx');
 
 // 즉시 평가
 console.time('');
