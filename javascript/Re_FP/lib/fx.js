@@ -1,4 +1,5 @@
 const isIterable = item => item && item[Symbol.iterator];
+const nop = Symbol('nop');
 
 /**
  * @description 함수를 받아서 함수를 리턴
@@ -12,13 +13,29 @@ const curry = f => (arg, ..._) =>
 /**
  * 결과를 만드는 함수
  */
+const preReduce = curry((func, acc, iter) => {
+  if (!iter) {
+    iter = acc[Symbol.iterator]();
+    acc = iter.next().value;
+  } else iter = iter[Symbol.iterator]();
+  for (const a of iter) acc = func(acc, a);
+  return acc;
+});
+const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
 const reduce = curry((func, acc, iter) => {
   if (!iter) {
     iter = acc[Symbol.iterator]();
     acc = iter.next().value;
-  }
-  for (const a of iter) acc = func(acc, a);
-  return acc;
+  } else iter = iter[Symbol.iterator]();
+  return go1(acc, function recur(acc) {
+    let cur;
+    while (!(cur = iter.next()).done) {
+      const item = cur.value;
+      acc = func(acc, item);
+      if (acc instanceof Promise) return acc.then(recur);
+    }
+    return acc;
+  });
 });
 // !---------------------------------------------------------
 
@@ -48,13 +65,30 @@ const range = len => {
 /**
  * 결과를 만드는 함수
  */
-const take = curry((limit, iter) => {
+const preTake = curry((limit, iter) => {
   let res = [];
   for (const item of iter) {
     res.push(item);
     if (res.length == limit) return res;
   }
   return res;
+});
+const take = curry((limit, iter) => {
+  let res = [];
+  iter = iter[Symbol.iterator]();
+  return (function recur() {
+    let cur;
+    while (!(cur = iter.next()).done) {
+      const item = cur.value;
+      if (item instanceof Promise)
+        return item
+          .then(a => ((res.push(a), res).length == limit ? res : recur()))
+          .catch(e => (e == nop ? recur() : Promise.reject(e)));
+      res.push(item);
+      if (res.length == limit) return res;
+    }
+    return res;
+  })();
 });
 // !---------------------------------------------------------
 
@@ -65,11 +99,16 @@ L.range = function* (limit) {
 };
 
 L.map = curry(function* (func, iter) {
-  for (const item of iter) yield func(item);
+  for (const item of iter) yield go1(item, func);
 });
 
 L.filter = curry(function* (func, iter) {
-  for (const item of iter) if (func(item)) yield item;
+  for (const item of iter) {
+    const b = go1(item, func);
+    if (b instanceof Promise)
+      yield b.then(b => (b ? item : Promise.reject(nop)));
+    else if (b) yield item;
+  }
 });
 
 L.entries = function* (obj) {
