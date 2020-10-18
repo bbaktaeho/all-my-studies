@@ -13,6 +13,24 @@ const curry = f => (arg, ..._) =>
 /**
  * 결과를 만드는 함수
  */
+const take = curry((limit, iter) => {
+  let res = [];
+  iter = iter[Symbol.iterator]();
+  return (function recur() {
+    let cur;
+    while (!(cur = iter.next()).done) {
+      const item = cur.value;
+      if (item instanceof Promise)
+        return item
+          .then(a => ((res.push(a), res).length == limit ? res : recur()))
+          .catch(e => (e == nop ? recur() : Promise.reject(e)));
+      res.push(item);
+      if (res.length == limit) return res;
+    }
+    return res;
+  })();
+});
+
 const preReduce = curry((func, acc, iter) => {
   if (!iter) {
     iter = acc[Symbol.iterator]();
@@ -22,16 +40,25 @@ const preReduce = curry((func, acc, iter) => {
   return acc;
 });
 const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
+
+const reduceF = (acc, a, f) =>
+  a instanceof Promise
+    ? a.then(
+        a => f(acc, a),
+        e => (e == nop ? acc : Promise.reject(e)),
+      )
+    : f(acc, a);
+
+const head = iter => go1(take(1, iter), ([h]) => h);
+
 const reduce = curry((func, acc, iter) => {
-  if (!iter) {
-    iter = acc[Symbol.iterator]();
-    acc = iter.next().value;
-  } else iter = iter[Symbol.iterator]();
+  if (!iter) return reduce(func, head((iter = acc[Symbol.iterator]())), iter);
+  iter = iter[Symbol.iterator]();
   return go1(acc, function recur(acc) {
     let cur;
     while (!(cur = iter.next()).done) {
       const item = cur.value;
-      acc = func(acc, item);
+      acc = reduceF(acc, item, func);
       if (acc instanceof Promise) return acc.then(recur);
     }
     return acc;
@@ -72,23 +99,6 @@ const preTake = curry((limit, iter) => {
     if (res.length == limit) return res;
   }
   return res;
-});
-const take = curry((limit, iter) => {
-  let res = [];
-  iter = iter[Symbol.iterator]();
-  return (function recur() {
-    let cur;
-    while (!(cur = iter.next()).done) {
-      const item = cur.value;
-      if (item instanceof Promise)
-        return item
-          .then(a => ((res.push(a), res).length == limit ? res : recur()))
-          .catch(e => (e == nop ? recur() : Promise.reject(e)));
-      res.push(item);
-      if (res.length == limit) return res;
-    }
-    return res;
-  })();
 });
 // !---------------------------------------------------------
 

@@ -30,3 +30,5 @@ go(
 // Promise.then의 중요한 규칙
 // then으로 꺼냈을 때 값이 반드시 Promise가 아니라는 규칙!
 Promise.resolve(Promise.resolve(Promise.resolve(1))).then(console.log);
+
+// * then의 두 번째 인자는 reject를 전달할 수 있다!!!!!!!
