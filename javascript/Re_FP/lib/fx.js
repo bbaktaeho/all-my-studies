@@ -125,6 +125,10 @@ const flatten = pipe(L.flatten, take(Infinity));
 const flatMap = curry(pipe(L.map, flatten));
 // !---------------------------------------------------------
 
+const find = curry((func, iter) =>
+  go(iter, L.filter(func), take(1), ([item]) => item),
+);
+
 module.exports = {
   L,
   curry,
@@ -138,6 +142,7 @@ module.exports = {
   join,
   flatten,
   flatMap,
+  find,
 };
 
 // var names = map(p => p.name, products);
