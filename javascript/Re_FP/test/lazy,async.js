@@ -1,4 +1,4 @@
-const { go, map, filter, take, reduce, L } = require('../lib/fx');
+const { go, map, filter, take, reduce, L, curry } = require('../lib/fx');
 
 go(
   [1, 2, 3],
@@ -54,5 +54,23 @@ go(
   L.map(a => new Promise(resolve => setTimeout(() => resolve(a * a), 1000))),
   L.filter(a => a % 2),
   take(1), // 평가가 필요할 때만 빼니까 map에서 모두 기다리지 않는다!!
+  console.log,
+);
+
+// 병렬적 동작
+// 지연된 함수열을 병렬적으로 평가하기
+const C = {};
+C.reduce = curry((f, acc, iter) => {
+  const iter2 = iter ? [...iter] : [...acc];
+  iter2.forEach(a => a.catch(() => {}));
+  return iter ? reduce(f, acc, iter2) : reduce(f, iter2);
+});
+const delay500 = a => new Promise(resolve => setTimeout(() => resolve(a), 500));
+
+go(
+  [1, 2, 3, 4, 5],
+  L.map(a => delay500(a * a)),
+  L.filter(a => a % 2),
+  C.reduce((a, b) => a + b),
   console.log,
 );
