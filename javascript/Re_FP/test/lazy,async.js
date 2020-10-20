@@ -1,4 +1,4 @@
-const { go, map, filter, take, reduce, L, curry } = require('../lib/fx');
+const { go, map, filter, take, reduce, L, curry, pipe } = require('../lib/fx');
 
 go(
   [1, 2, 3],
@@ -58,19 +58,35 @@ go(
 );
 
 // 병렬적 동작
+// 하나의 스레드에서도 시피유를 점유하는 것을 효율적으로 하게 할 수 있음
 // 지연된 함수열을 병렬적으로 평가하기
 const C = {};
+const noop = () => {};
+const catchNoop = arr => (
+  arr.forEach(a => (a instanceof Promise ? a.catch(noop) : a)), arr
+);
 C.reduce = curry((f, acc, iter) => {
-  const iter2 = iter ? [...iter] : [...acc];
-  iter2.forEach(a => a.catch(() => {}));
+  const iter2 = catchNoop(iter ? [...iter] : [...acc]);
   return iter ? reduce(f, acc, iter2) : reduce(f, iter2);
 });
-const delay500 = a => new Promise(resolve => setTimeout(() => resolve(a), 500));
+const delay1000 = a =>
+  new Promise(resolve => setTimeout(() => resolve(a), 1000));
+// console.time('C: ');
+// go(
+//   [1, 2, 3, 4, 5],
+//   L.map(a => delay1000(a * a)),
+//   L.filter(a => a % 2),
+//   // C.reduce((a, b) => a + b),
+//   C.take(2),
+//   console.log,
+//   _ => console.timeEnd('C: '),
+// );
 
-go(
-  [1, 2, 3, 4, 5],
-  L.map(a => delay500(a * a)),
-  L.filter(a => a % 2),
-  C.reduce((a, b) => a + b),
-  console.log,
-);
+C.take = curry((limit, iter) => take(limit, catchNoop([...iter])));
+C.takeAll = C.take(Infinity);
+C.map = curry(pipe(L.map, C.takeAll));
+C.filter = curry(pipe(L.filter, C.takeAll));
+
+console.clear();
+C.map(a => delay1000(a * a), [1, 2, 3, 4]).then(console.log);
+C.filter(a => delay1000(a % 2), [1, 2, 3, 4]).then(console.log);

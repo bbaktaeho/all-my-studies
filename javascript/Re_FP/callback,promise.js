@@ -80,10 +80,11 @@ var f = ({ name }) => name;
 var g = getUserById;
 // var fg = id => f(g(id)); // 에러 발생할 수 있음
 
-// 함수 합성
+// 안전한 함수 합성(클레이슬리)
 var fg = id =>
   Promise.resolve(id)
     .then(g)
     .then(f)
     .catch(a => a);
+
 fg(4).then(console.log);
