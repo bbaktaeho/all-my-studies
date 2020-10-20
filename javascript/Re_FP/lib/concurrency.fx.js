@@ -4,10 +4,9 @@ const catchNoop = arr => (
 );
 const C = {};
 
-C.reduce = curry((f, acc, iter) => {
-  const iter2 = catchNoop(iter ? [...iter] : [...acc]);
-  return iter ? reduce(f, acc, iter2) : reduce(f, iter2);
-});
+C.reduce = curry((f, acc, iter) =>
+  iter ? reduce(f, acc, catchNoop([...iter])) : reduce(f, catchNoop(acc)),
+);
 C.take = curry((limit, iter) => take(limit, catchNoop([...iter])));
 C.takeAll = C.take(Infinity);
 C.map = curry(pipe(L.map, C.takeAll));
