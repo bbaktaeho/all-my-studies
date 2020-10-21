@@ -10,5 +10,4 @@ function solution(n) {
   return answer;
 }
 
-var n = 45;
-console.log(parseInt([...n.toString(3)].reverse().join(''), 3));
+console.log(Math.pow(2, 10));
