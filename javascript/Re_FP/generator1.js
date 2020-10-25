@@ -4,13 +4,16 @@
  */
 
 function* gen() {
-  yield 1;
-  yield 2;
-  yield 3;
-  return 100; // 리턴 값은 done이 true가 될 때 나오는 값 (순회는 하지 않음)
+  let i = 0;
+  while (i < 10) {
+    console.log(i);
+    yield ++i;
+  }
 }
+// console.log(iter[Symbol.iterator]() == iter);
+// console.log(iter.next());
 var iter = gen();
-console.log(iter[Symbol.iterator]() == iter);
-console.log(iter.next());
 
-for (const item of gen()) console.log(item);
+for (const item of iter) {
+  // if (item == 1) break;
+}
