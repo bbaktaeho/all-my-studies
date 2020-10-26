@@ -1,23 +1,14 @@
 var solution = (progresses, speeds) => {
-  let count = 0;
-  const result = [];
-  while (progresses.length > 0) {
-    if (progresses[0] >= 100) {
+  const arr = [];
+  while (progresses.length) {
+    let count = 0;
+    for (const i in progresses) progresses[i] += speeds[i];
+    while (progresses[0] >= 100) {
+      count++;
       progresses.shift();
       speeds.shift();
-      count++;
-      continue;
-    } else {
-      if (count) {
-        result.push(count);
-        count = 0;
-      }
-      progresses.forEach((e, i) => (progresses[i] += speeds[i]));
-      continue;
     }
+    if (count) arr.push(count);
   }
-  result.push(count);
-  return result;
+  return arr;
 };
-
-console.log(solution([0, 0, 0, 0], [100, 50, 34, 25]));
