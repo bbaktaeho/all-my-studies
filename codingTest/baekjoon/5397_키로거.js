@@ -19,9 +19,9 @@ function solution(list) {
   const rightQueue = [];
   list.some(e => {
     if (e == '<' && leftStack.length) rightQueue.push(leftStack.pop());
-    else if (e == '>' && rightQueue.length) leftStack.push(rightQueue.shift());
+    else if (e == '>' && rightQueue.length) leftStack.push(rightQueue.pop());
     else if (e == '-' && leftStack.length) leftStack.pop();
     else if (e != '<' && e != '>' && e != '-') leftStack.push(e);
   });
-  return leftStack.concat(rightQueue).join('');
+  return leftStack.concat(rightQueue.reverse()).join('');
 }

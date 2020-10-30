@@ -13,4 +13,4 @@ function getCombinations(arr, select) {
   });
   return result;
 }
-console.log(getCombinations([1, 2, 3], 2));
+console.log(getCombinations([1, 2, 3], 3));
