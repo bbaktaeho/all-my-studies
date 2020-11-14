@@ -1,14 +1,14 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
-const mysql = require("mysql2/promise");
+const mysql = require('mysql2/promise');
 
 (async function () {
   try {
     const pool = mysql.createPool({
-      host: process.env.DB_HOST,
+      host: 'localhost',
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: "test",
+      database: 'test',
       connectionLimit: 4,
     });
 
@@ -17,11 +17,13 @@ const mysql = require("mysql2/promise");
     // console.log(result);
 
     const connArr = await Promise.all([
-      pool.getConnection(async (conn) => conn),
-      pool.getConnection(async (conn) => conn),
-      pool.getConnection(async (conn) => conn),
-      pool.getConnection(async (conn) => conn),
-      pool.getConnection(async (conn) => conn),
+      pool.getConnection(async conn => {
+        console.log(conn);
+      }),
+      pool.getConnection(async conn => conn),
+      pool.getConnection(async conn => conn),
+      pool.getConnection(async conn => conn),
+      pool.getConnection(async conn => conn),
     ]);
     console.log(connArr[0]);
   } catch (err) {
