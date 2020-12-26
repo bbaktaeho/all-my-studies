@@ -1,9 +1,14 @@
-arr = [5,2,3,1]
-arrLength = len(arr)
+import random
 
-for i in range(0, arrLength-1):
-    re = arrLength - 1 - i
-    for j in range(0, re):
-        if arr[j] > arr[j+1]: arr[j+1], arr[j] = arr[j], arr[j+1]
+def bubbleSort(arr):
+    for i in range(0, len(arr)-1):
+        isSwap = False
+        for j in range(0, len(arr) - 1 - i):
+            if arr[j] > arr[j+1]: 
+                arr[j+1], arr[j] = arr[j], arr[j+1]
+                isSwap = True
+        if isSwap == False: break 
+    return arr
 
-print(arr)
+arr = random.sample(range(100), 20)
+print(bubbleSort(arr))
