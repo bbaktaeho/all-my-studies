@@ -1,3 +1,5 @@
+# 재귀 호출의 일반적인 형태
+
 def multiple(data):
     if data <= 1:
         return data
@@ -40,3 +42,10 @@ def solution1(n):
     elif n % 2 == 1: return solution1(3*n+1)
     else: return solution1(n/2)
 solution1(3)
+
+def solution2(n):
+    if n == 1: return 1
+    elif n == 2: return 2
+    elif n == 3: return 4
+    else: return solution2(n-3) + solution2(n-2) + solution2(n-1)
+print(solution2(5))
