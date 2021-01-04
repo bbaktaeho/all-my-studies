@@ -9,19 +9,21 @@
 coinList = [500, 100, 50, 10]
 
 
-def minCoin(value, coins=[]):
+def getMinCoins(change, coinList):
+    coinList.sort(reverse=True)
     total = 0
     details = []
-    coins.sort(reverse=True)
-    for coin in coins:
-        count = value // coin
+
+    for coin in coinList:
+        count = change // coin
         total += count
-        value -= count * coin
+        change = change % coin
         details.append([coin, count])
-    return total, details
+    print(details)
+    return total
 
 
-print(minCoin(4720, coinList))
+print(getMinCoins(4720, coinList))
 
 
 # 부분 배낭 몬제
@@ -31,21 +33,40 @@ mList = [(15, 12), (10, 10), (30, 5), (20, 10), (25, 8)]
 
 
 def getMaxValue(mList, capacity):
-    mSortList = sorted(mList, key=lambda x: x[1] / x[0], reverse=True)
-    totalValue = 0
+    mList = sorted(mList, key=lambda x: x[1] / x[0], reverse=1)
+    total = 0
     details = []
 
-    for item in mSortList:
-        if capacity - item[0] >= 0:
-            capacity -= item[0]
-            totalValue += item[1]
-            details.append([item[0], item[1], 1])  # 리스트 마지막에 들어가는 수는 최대 1, 최소 0 (그 물건이 모두 들어갔으면 1)
-        else:  # 배낭의 용량이 남아있을 때 남은 물건의 무게를 나눠서 들어갈 수 있을만큼 넣고 가치도 그만큼 추가해줌
-            fraction = capacity / item[0]
-            totalValue += item[1] * fraction
-            details.append([item[0], item[1], fraction])
+    for m in mList:
+        if capacity >= m[0]:
+            total += m[1]
+            capacity -= m[0]
+            details.append([m, 1])
+        else:
+            fraction = capacity / m[0]
+            total += m[1] * fraction
+            details.append([m, fraction])
             break
-    return totalValue, details
+    print(details)
+    return total
+
+
+# def getMaxValue(mList, capacity):
+#     mSortList = sorted(mList, key=lambda x: x[1] / x[0], reverse=True)
+#     totalValue = 0
+#     details = []
+
+#     for item in mSortList:
+#         if capacity - item[0] >= 0:
+#             capacity -= item[0]
+#             totalValue += item[1]
+#             details.append([item[0], item[1], 1])  # 리스트 마지막에 들어가는 수는 최대 1, 최소 0 (그 물건이 모두 들어갔으면 1)
+#         else:  # 배낭의 용량이 남아있을 때 남은 물건의 무게를 나눠서 들어갈 수 있을만큼 넣고 가치도 그만큼 추가해줌
+#             fraction = capacity / item[0]
+#             totalValue += item[1] * fraction
+#             details.append([item[0], item[1], fraction])
+#             break
+#     return totalValue, details
 
 
 print(getMaxValue(mList, 30))
