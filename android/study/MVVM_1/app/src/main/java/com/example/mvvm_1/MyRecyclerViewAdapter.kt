@@ -9,7 +9,9 @@ import com.example.mvvm_1.databinding.ItemRecyclerBinding
 import com.example.mvvm_1.db.Subscriber
 import com.example.mvvm_1.generated.callback.OnClickListener
 
-class MyRecyclerViewAdapter(private val subscribers: List<Subscriber>, private val clickListener: (Subscriber) -> Unit): RecyclerView.Adapter<MyViewHolder>() {
+class MyRecyclerViewAdapter(private val clickListener: (Subscriber) -> Unit): RecyclerView.Adapter<MyViewHolder>() {
+    private val subscribers = ArrayList<Subscriber>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ItemRecyclerBinding>(layoutInflater, R.layout.item_recycler, parent, false)
@@ -22,6 +24,11 @@ class MyRecyclerViewAdapter(private val subscribers: List<Subscriber>, private v
 
     override fun getItemCount(): Int {
         return subscribers.size
+    }
+
+    fun setList(subs: List<Subscriber>) {
+        subscribers.clear()
+        subscribers.addAll(subs)
     }
 }
 
