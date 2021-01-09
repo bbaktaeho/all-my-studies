@@ -50,9 +50,8 @@ class LinkedList {
   }
 
   removeAtData(data) {
-    if (!this.#head) return;
     let current = this.#head;
-    if (current.data == data) {
+    if (current?.data == data) {
       this.#size--;
       this.#head = current.next;
       return;
@@ -77,13 +76,3 @@ class LinkedList {
     return null;
   }
 }
-
-const linkedList = new LinkedList();
-for (let i = 1; i < 11; i++) linkedList.add(new Node(i));
-linkedList.print();
-linkedList.insertBackAtData(new Node(2.5), 2);
-linkedList.print();
-linkedList.removeAtData(7);
-linkedList.print();
-console.log(linkedList.getSize());
-console.log(linkedList.searchData(3));

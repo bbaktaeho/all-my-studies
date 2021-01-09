@@ -64,18 +64,3 @@ class LinkedList(object):
                     self.size -= 1
                     return
                 node = node.next
-
-
-l = LinkedList()
-for i in range(1, 20):
-    l.add(Node(i))
-l.insertBackAtData(Node(55), 10)
-l.insertBackAtData(Node(525), 15)
-l.insertBackAtData(Node(88), 7)
-l.insertBackAtData(Node(555), 8)
-l.printList()
-print("size:", l.size)
-print("search 55:", l.searchData(55))
-l.removeData(88)
-l.printList()
-print("size:", l.size)
