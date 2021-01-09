@@ -7,18 +7,16 @@ class Node {
 
 class LinkedList {
   #size = 0;
-  constructor() {
-    this.head = null;
-  }
+  #head = null;
 
   getSize() {
     return this.#size;
   }
   print() {
     const list = [];
-    if (!this.head) console.log(list.toString());
+    if (!this.#head) console.log(list.toString());
     else {
-      let node = this.head;
+      let node = this.#head;
       while (node) {
         list.push(node.data);
         node = node.next;
@@ -29,17 +27,17 @@ class LinkedList {
 
   add(node) {
     this.#size++;
-    if (!this.head) this.head = node;
+    if (!this.#head) this.#head = node;
     else {
-      let current = this.head;
+      let current = this.#head;
       while (current.next) current = current.next;
       current.next = node;
     }
   }
 
   insertBackAtData(node, data) {
-    if (!this.head) return;
-    let current = this.head;
+    if (!this.#head) return;
+    let current = this.#head;
     while (current) {
       if (current.data == data) {
         this.#size++;
@@ -52,11 +50,11 @@ class LinkedList {
   }
 
   removeAtData(data) {
-    if (!this.head) return;
-    let current = this.head;
+    if (!this.#head) return;
+    let current = this.#head;
     if (current.data == data) {
       this.#size--;
-      this.head = current.next;
+      this.#head = current.next;
       return;
     }
     while (current.next) {
@@ -69,9 +67,9 @@ class LinkedList {
   }
 
   searchData(data) {
-    if (!this.head) return null;
-    if (this.head.data == data) return this.head;
-    let current = this.head.next;
+    if (!this.#head) return null;
+    if (this.#head.data == data) return this.#head;
+    let current = this.#head.next;
     while (current) {
       if (current.data == data) return current;
       else current = current.next;
