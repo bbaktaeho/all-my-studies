@@ -107,3 +107,18 @@ class BinarySearchThree {
     }
   }
 }
+
+const bst = new BinarySearchThree();
+bst.insert(new Node(10));
+bst.insert(new Node(5));
+bst.insert(new Node(15));
+bst.insert(new Node(17));
+bst.insert(new Node(13));
+bst.insert(new Node(7));
+bst.insert(new Node(3));
+console.log(bst.getHead());
+bst.remove(15);
+console.log(bst.getHead());
+bst.remove(10);
+console.log(bst.searchAndGetNode(10));
+console.log(bst.getHead());

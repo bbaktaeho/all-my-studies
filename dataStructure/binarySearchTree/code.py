@@ -1,8 +1,8 @@
 class Node(object):
-    def __init__(self, value):
+    def __init__(self, value, left=None, right=None):
         self.value = value
-        self.left = None
-        self.right = None
+        self.left = left
+        self.right = right
 
 
 class BinarySearchTree(object):
@@ -46,7 +46,7 @@ class BinarySearchTree(object):
 
     def remove(self, value):
         searched = False
-        parent = self.head
+        parent = Node(float("inf"), self.head, self.head)
         current = self.head
         while current:
             if current.value == value:
@@ -58,13 +58,10 @@ class BinarySearchTree(object):
             else:
                 parent = current
                 current = current.right
-
         if searched == False:
-            return False
+            return
         else:
-            if current == self.head:
-                d
-            elif current.left == None and current.right == None:
+            if current.left == None and current.right == None:
                 if parent.value > value:
                     parent.left = None
                 else:
@@ -128,3 +125,6 @@ bool, node = bst.search(5)
 if node:
     print(node.value, ": left ->", node.left.value if node.left != None else None)
     print(node.value, ": right ->", node.right.value if node.right != None else None)
+bst.remove(10)
+bool, node = bst.search(10)
+print(bool)
