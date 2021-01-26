@@ -11,4 +11,4 @@ import { CustomerService } from './service/customer.service';
   controllers: [CustomerController],
   providers: [CustomerService],
 })
-export class customerModule {}
+export class CustomerModule {}
