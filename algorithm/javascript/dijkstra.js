@@ -7,4 +7,6 @@ const graph = {
   F: { A: 5 },
 };
 
-console.log(graph);
+function dijkstra(graph, start){
+    
+}
