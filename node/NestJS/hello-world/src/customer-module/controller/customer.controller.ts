@@ -12,7 +12,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { CreateCustomerDTO } from '../dto/customer.dto';
+import { CreateCustomerDTO, CustomerParamDTO } from '../dto/customer.dto';
 import { CustomerService } from '../service/customer.service';
 
 @Controller('customers') // 여기가 바로 라우터 되시겠다!
@@ -30,13 +30,16 @@ export class CustomerController {
     @Res() res: Response,
     @Body() customerReq: CreateCustomerDTO,
   ) {
-    const data = this.customerService.createCustomer(customerReq);
+    const data = await this.customerService.createCustomer(customerReq);
     res.status(HttpStatus.OK).json(data);
   }
 
   @Get(':customerId')
-  async getCustomerById(@Param('customerId') id: string, @Res() res: Response) {
-    const data = this.customerService.getCustomer(id);
+  async getCustomerById(
+    @Param() param: CustomerParamDTO,
+    @Res() res: Response,
+  ) {
+    const data = await this.customerService.getCustomer(param.customerId);
     res.status(HttpStatus.OK).json(data);
   }
 
@@ -45,7 +48,7 @@ export class CustomerController {
     @Query('customerId') id: string,
     @Res() res: Response,
   ) {
-    const data = this.customerService.getCustomer(id);
+    const data = await this.customerService.getCustomer(id);
     res.status(HttpStatus.OK).json({
       message: 'customer deleted',
       data,
@@ -58,7 +61,7 @@ export class CustomerController {
     @Res() res: Response,
     @Req() req: Request,
   ) {
-    const data = this.customerService.updateCustomer(id, req.body);
+    const data = await this.customerService.updateCustomer(id, req.body);
     res.status(HttpStatus.OK).json(data);
   }
 }

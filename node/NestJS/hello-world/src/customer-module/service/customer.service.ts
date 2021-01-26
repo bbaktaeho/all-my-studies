@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateCustomerDTO } from '../dto/customer.dto';
@@ -16,7 +20,10 @@ export class CustomerService {
   }
 
   public async getCustomer(id: string): Promise<Customer> {
-    return await this.customerModel.findById(id).exec();
+    const customer = await this.customerModel.findById(id).exec();
+    if (!customer) throw new NotFoundException('customer not found');
+
+    return customer;
   }
 
   public async createCustomer(customer: CreateCustomerDTO): Promise<Customer> {
