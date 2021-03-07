@@ -1,0 +1,27 @@
+const path = require('path');
+
+// todo: 초기 init 작업 코드
+module.exports = {
+  config: path.resolve('src/db/config/config.js'),
+  'models-path': path.resolve('src/db/models'),
+  'seeders-path': path.resolve('src/db/seeders'),
+  'migrations-path': path.resolve('src/db/migrations'),
+};
+
+// todo: config.js 수정
+// const storage = path.join(__dirname, '../../../db.sqlite');
+// module.exports = {
+//   development: {
+//     dialect: 'sqlite',
+//     storage,
+//   },
+//   test: {
+//     dialect: 'sqlite',
+//     storage: ':memory',
+//   },
+//   production: {
+//     use_env_variable: 'DB_CONNECTION_STRING',
+//     dialect: 'postgres',
+//     logging: false,
+//   },
+// };

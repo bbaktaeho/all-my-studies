@@ -1,8 +1,0 @@
-# node
-node_modules
-
-# env
-.env
-
-# session store
-sessions
