@@ -3,24 +3,25 @@ input = sys.stdin.readline
 
 N, M = map(int, input().strip().split())
 board = []
-for _ in range(M):
-    board.append(list(input().strip()))
+for _ in range(N): board.append(list(input().strip()))
+result = 0 # 최소로 추가하는 경비 수
 
-cnt = 0
+def column_check(c):
+    for r in range(N):
+        if board[r][c] == 'X': return True
+    return False
 
-for i in range(N):
-    for j in range(M):
-        if board[i].count('X') == 0:
-            X_check = False
-            for k in range(N):
-                if board[k][j] == 'X':
-                    X_check = True
-                    break
-            if not X_check: 
+for i in range(N): # 로우
+    if board[i].count('X') == 0:
+        pre_result = result
+        for j in range(M):
+            if not column_check(j): 
                 board[i][j] = 'X'
-                cnt += 1
+                result += 1
                 break
-            else: continue
-        else: break
+        if pre_result == result: result += 1 # 아무곳에 경비를 둠
 
-print(cnt) 
+for i in range(M): # 컬럼
+    if not column_check(i): result += 1
+
+print(result)
