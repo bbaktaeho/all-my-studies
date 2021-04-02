@@ -1,39 +1,37 @@
+from sys import stdin
 from collections import deque
+input = stdin.readline
 
+N, M, V = map(int, input().split())
+v_arr = [[] for _ in range(N+1)]
+for _ in range(M):
+    x, y = map(int, input().split())
+    v_arr[x].append(y)
+    v_arr[y].append(x)
+
+for arr in v_arr: arr.sort()
+
+dfs_result = []
+bfs_result = []
+visited = [False] * (N + 1)
 
 def dfs(v):
-    if visited[v]:
-        return
+    if visited[v]: return
+    dfs_result.append(v)
     visited[v] = True
-    print(v, end=" ")
-    for i in arr[v]:
-        if not visited[i]:
-            dfs(i)
-
+    for next_v in v_arr[v]: dfs(next_v)
 
 def bfs(v):
     q = deque([v])
     while q:
-        node = q.popleft()
-        if visited[node]:
-            continue
-        print(node, end=" ")
-        visited[node] = True
-        for i in arr[node]:
-            q.append(i)
+        cur = q.popleft()
+        if visited[cur]: continue
+        bfs_result.append(cur)
+        visited[cur] = True
+        for next_v in v_arr[cur]: q.append(next_v)
 
-
-n, m, v = map(int, input().split())
-arr = [[] for _ in range(n + 1)]
-for _ in range(m):
-    x, y = map(int, input().split())
-    arr[x].append(y)
-    arr[y].append(x)
-for i in arr:
-    i.sort()  # 정점 번호가 작은 것 부터
-
-visited = [False for _ in range(n + 1)]
-dfs(v)
-print()
-visited = [False for _ in range(n + 1)]
-bfs(v)
+dfs(V)
+visited = [False] * (N + 1)
+bfs(V)
+print(*dfs_result)
+print(*bfs_result)
