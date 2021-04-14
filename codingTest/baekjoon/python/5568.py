@@ -5,6 +5,6 @@ input = sys.stdin.readline
 N, K = int(input()), int(input())
 number_list = []
 result = set()
-for _ in range(N): number_list.append(int(input()))
-for p in permutations(number_list, K): result.add(("".join(map(str, p))))
+for _ in range(N): number_list.append((input().strip()))
+for p in permutations(number_list, K): result.add(("".join(p)))
 print(len(result))
