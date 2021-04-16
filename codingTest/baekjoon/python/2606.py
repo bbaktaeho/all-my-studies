@@ -1,44 +1,36 @@
-# def dfs(v):
-#     global cnt
-#     if v < 0 or v > N or visited[v]:
-#         return
-#     visited[v] = True
-#     cnt += 1
-#     for i in comArr[v]:
-#         dfs(i)
-
-
-# N = int(input())
-# comArr = [[] for _ in range(N + 1)]
-# for _ in range(int(input())):
-#     x, y = map(int, input().split())
-#     comArr[x].append(y)
-#     comArr[y].append(x)
-
-# cnt = -1
-# visited = [False] * (N + 1)
-# dfs(1)
-# print(cnt)
-
-
-import sys
-input = sys.stdin.readline
+import sys; input = sys.stdin.readline
+from collections import deque
 
 N = int(input())
-v_arr = [[] for _ in range(N + 1)]
-visited = [False] * (N + 1)
-cnt = 0
-for _ in range(int(input())):
-    x, y = map(int, input().split())
-    v_arr[x].append(y)
-    v_arr[y].append(x)
+
+graph = [[] for _ in range(N+1)]
+result = 0
 
 def dfs(v):
-    global cnt
+    global result
     if visited[v]: return
     visited[v] = True
-    cnt += 1
-    for next_v in v_arr[v]: dfs(next_v)
+    result += 1
+    for next_v in graph[v]: dfs(next_v)
 
-dfs(1)
-print(cnt - 1)
+def bfs(v):
+    count = 0
+    q = deque([v])
+    while q:
+        com = q.popleft()
+        if visited[com]: continue
+        visited[com] = True
+        count += 1
+        for next_com in graph[com]: q.append(next_com)
+    return count
+
+for _ in range(int(input())):
+    x, y = map(int, input().split())
+    graph[x].append(y)
+    graph[y].append(x)
+
+# visited = [False] * (N + 1)
+# dfs(1)
+# print(result - 1)
+visited = [False] * (N + 1)
+print(bfs(1) - 1)
