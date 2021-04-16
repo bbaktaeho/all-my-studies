@@ -1,17 +1,16 @@
 import sys; input = sys.stdin.readline
 
-while True:
+def solution(string_stack):
     stack = []
-    string = input().rstrip()
-    if string == '.': break
-    string_stack = list(string)
     while string_stack:
         c = string_stack.pop()
         if c not in ('(', ')', '[', ']'): continue
         if c == ')' or c == ']': stack.append(c)
-        elif (not stack) or (c == '(' and stack[-1] != ')') or (c == '[' and stack[-1] != ']'):
-            print('no')
-            break
+        elif not stack: return 'no'
+        elif (c == '(' and stack[-1] != ')') or (c == '[' and stack[-1] != ']'): return 'no'
         else: stack.pop()
-    if not stack: print('yes')
-    else: print('no')
+    return 'no' if stack else 'yes'
+while True:
+    string = input().rstrip()
+    if string == '.': break # * 종료
+    print(solution(list(string)))
