@@ -7,4 +7,5 @@ while int(A) not in sequence:
     D = 0
     for c in A: D += int(c) ** P
     A = str(D)
+    
 print(len(sequence[:sequence.index(int(A))]))
