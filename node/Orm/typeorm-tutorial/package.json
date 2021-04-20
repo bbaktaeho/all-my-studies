@@ -5,17 +5,23 @@
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/node": "^8.0.29",
+    "@types/uuid": "^8.3.0",
+    "nodemon": "^2.0.7",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "class-validator": "^0.13.1",
     "express": "^4.17.1",
     "mysql": "^2.14.1",
     "reflect-metadata": "^0.1.10",
-    "typeorm": "0.2.32"
+    "typeorm": "0.2.32",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc"
   }
 }
